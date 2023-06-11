@@ -1,13 +1,17 @@
 package com.katerinavp.currency.repository
 
-import kotlinx.coroutines.flow.*
 import com.katerinavp.currency.model.api.CurrencyApi
-import com.katerinavp.currency.model.data.Currency
-import kotlinx.coroutines.flow.channelFlow
+import com.katerinavp.currency.model.data.ModelResponseNetwork
+import javax.inject.Inject
 
-class CurrencyRepository(private val api : CurrencyApi) {
+class CurrencyRepositoryImpl @Inject constructor(private val api: CurrencyApi) :
+    CurrencyRepository {
 
-    fun getCurrency(): Flow<Currency>{
-        return channelFlow { api.getCurrency() }
+    override suspend fun getCurrency(): ModelResponseNetwork {
+        return api.getCurrency()
     }
+}
+
+interface CurrencyRepository {
+    suspend fun getCurrency(): ModelResponseNetwork
 }

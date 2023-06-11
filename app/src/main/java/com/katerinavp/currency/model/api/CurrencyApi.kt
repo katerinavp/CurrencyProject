@@ -1,6 +1,6 @@
 package com.katerinavp.currency.model.api
 
-import com.katerinavp.currency.model.data.Currency
+import com.katerinavp.currency.model.data.ModelResponseNetwork
 import retrofit2.http.GET
 
 /**
@@ -10,5 +10,5 @@ import retrofit2.http.GET
 interface CurrencyApi {
 
     @GET("daily_json.js")
-    suspend fun getCurrency(): Currency
+    suspend fun getCurrency(): ModelResponseNetwork
 }

@@ -2,7 +2,7 @@ package com.katerinavp.currency.model.data
 
 import com.google.gson.annotations.SerializedName
 
-class Currency (
+class CurrencyNetwork (
     @SerializedName("ID")
     val id: String,
 
