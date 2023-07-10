@@ -11,5 +11,13 @@ fun ModelResponseNetwork.convertTo(): List<ConvertCurrency> {
             valueCurrency = currencyModel.value,
         )
     }
+}
+
+    fun ModelResponseNetwork.returnCharCode(): List<String> {
+        return this.valute.values.map { currencyModel ->
+            currencyModel.charCode
+
+        }
+
 
 }

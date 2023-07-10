@@ -6,11 +6,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.katerinavp.currency.App
 import com.katerinavp.currency.di.components.AppComponent
 import javax.inject.Inject
+import javax.inject.Named
 
 abstract class InitFragment: BaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
     var component: AppComponent? = null
 
     /**

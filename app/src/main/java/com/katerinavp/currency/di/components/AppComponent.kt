@@ -4,6 +4,7 @@ import android.content.Context
 import com.katerinavp.currency.App
 import com.katerinavp.currency.di.modules.CurrencyModule
 import com.katerinavp.currency.di.modules.NetworkModule
+import com.katerinavp.currency.di.modules.ViewModelModule
 import com.katerinavp.currency.view.fragments.base.InitFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -14,7 +15,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = [NetworkModule::class, CurrencyModule::class])
+@Component(modules = [NetworkModule::class, CurrencyModule::class,  ViewModelModule::class])
 interface AppComponent {
 
     @Component.Builder

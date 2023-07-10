@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import com.katerinavp.currency.R
 import com.katerinavp.currency.common.extension.convertTo
 import com.katerinavp.currency.databinding.FragmentCurrencyBinding
 import com.katerinavp.currency.model.data.ModelResponseNetwork
@@ -55,6 +57,10 @@ class CurrencyFragment : InitFragment(){
         val adapter = AdapterCurrency()
         binding.recyclerView.adapter = adapter
         adapter.submitList(data.convertTo())
+
+        binding.btnConvert.setOnClickListener {
+            findNavController().navigate(R.id.converterFragment)
+        }
     }
 
 }

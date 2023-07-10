@@ -10,10 +10,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class CurrencyViewModel @Inject constructor(private val repo: CurrencyRepository) : ViewModel() {
+class ConverterViewModel @Inject constructor(private val repo: CurrencyRepository) : ViewModel() {
 
-    private val _currencyState = MutableStateFlow<CurrencyState>(CurrencyState.Empty)
-    val currencyState: StateFlow<CurrencyState> = _currencyState
+    private val _converterState = MutableStateFlow<CurrencyState>(CurrencyState.Empty)
+    val converterState: StateFlow<CurrencyState> = _converterState
+
 
     init {
         getCurrency()
@@ -24,11 +25,12 @@ class CurrencyViewModel @Inject constructor(private val repo: CurrencyRepository
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val currencyResult = repo.getCurrency()
-                _currencyState.emit(CurrencyState.Success(currencyResult))
+                _converterState.emit(CurrencyState.Success(currencyResult))
             } catch (e: Throwable) {
-                _currencyState.emit(CurrencyState.Error(e))
+                _converterState.emit(CurrencyState.Error(e))
             }
         }
+
     }
 }
 
