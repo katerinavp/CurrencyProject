@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Currency</string>
     <string name="action_convert">Конвертировать</string>
-    <string name="edit_sum">Введите сумму</string>
+    <string name="edit_sum">Введите сумму ₽</string>
+    <string name="result_sum">Результат</string>
+    <string name="current_date">Текущая дата</string>
+    <string name="search_hint">Поиск</string>
+    <string name="bullet">●</string>
+    <string name="currency">Курс валют</string>
+    <string name="convert">Конвертация</string>
+    <string name ="items_favourites">Избранное</string>
+    <string name ="items_currency">Курс валют</string>
+    <string name="items_exchange">Обмен валюты</string>
 </resources>

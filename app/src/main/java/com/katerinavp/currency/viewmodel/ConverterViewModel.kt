@@ -2,6 +2,7 @@ package com.katerinavp.currency.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.katerinavp.currency.model.data.ConvertCurrency
 import com.katerinavp.currency.repository.CurrencyRepository
 import com.katerinavp.currency.view.fragments.CurrencyState
 import kotlinx.coroutines.Dispatchers
@@ -32,5 +33,20 @@ class ConverterViewModel @Inject constructor(private val repo: CurrencyRepositor
         }
 
     }
+
+    fun convert(sum: Int, data: ConvertCurrency) {
+
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                _converterState.value =
+                    CurrencyState.SumResult( Math.round(data.valueCurrency*sum).toString())
+
+            } catch (e: Throwable) {
+                _converterState.emit(CurrencyState.Error(e))
+            }
+        }
+    }
+
+
 }
 

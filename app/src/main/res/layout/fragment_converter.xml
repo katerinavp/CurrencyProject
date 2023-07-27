@@ -1,39 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/base">
 
-    <EditText
-        android:id="@+id/currencyText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:hint="@string/edit_sum"
-        app:layout_constraintEnd_toStartOf="@id/currencySpinner"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <include
+        android:id="@+id/appBar"
+        layout="@layout/layout_app_bar_main" />
 
-    <Spinner
-        android:id="@+id/currencySpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/currencyText"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/app_bar"
+        tools:visibility="visible">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/action_convert"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currencyText"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/main_space" />
 
-        />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/main_space" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/currencyEditText"
+            android:layout_width="0dp"
+            style="@style/EditTextSearch"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:inputType="number"
+            android:hint="@string/edit_sum"
+            app:layout_constraintEnd_toEndOf="@id/end"
+            app:layout_constraintStart_toStartOf="@id/start"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/currencySpinner"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:text="₽"-->
+<!--            android:gravity="center_vertical"-->
+<!--            app:layout_constraintEnd_toEndOf="@id/end"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/currencyEditText"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/currencyEditText" />-->
+
+        <EditText
+            android:id="@+id/currencyResultEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/EditTextSearch"
+            android:layout_marginTop="@dimen/main_space"
+            android:layout_marginEnd="@dimen/half_space"
+            android:gravity="center"
+            android:hint="@string/result_sum"
+            app:layout_constraintEnd_toStartOf="@id/currencyChooseSpinner"
+            app:layout_constraintStart_toStartOf="@id/start"
+            app:layout_constraintTop_toBottomOf="@id/currencyEditText" />
+
+        <Spinner
+            android:id="@+id/currencyChooseSpinner"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/main_space"
+            app:layout_constraintEnd_toEndOf="@id/end"
+            app:layout_constraintStart_toEndOf="@+id/currencyResultEditText"
+            app:layout_constraintTop_toBottomOf="@id/currencyEditText"
+            app:layout_constraintBottom_toBottomOf="@+id/currencyResultEditText" />
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btnConvert"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/main_space"-->
+<!--            style="@style/Button"-->
+<!--            android:text="@string/action_convert"-->
+<!--            app:layout_constraintEnd_toEndOf="@id/end"-->
+<!--            app:layout_constraintStart_toStartOf="@id/start"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/currencyResultEditText"-->
+
+<!--            />-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

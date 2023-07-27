@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.katerinavp.currency.R
+import com.katerinavp.currency.common.extension.convertDateToString
 import com.katerinavp.currency.common.extension.convertTo
 import com.katerinavp.currency.databinding.FragmentCurrencyBinding
 import com.katerinavp.currency.model.data.ModelResponseNetwork
@@ -32,6 +33,13 @@ class CurrencyFragment : InitFragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        updateToolbar(binding.appBar.appBar, getString(R.string.currency))
+
+        binding.appBar.searchLayout.setTransition(R.id.start, R.id.end)
+        binding.appBar.searchLayout.setTransitionDuration(MOTION_DURATION)
+
+//        binding.btnConvert.isEnabled = false
+//        binding.btnUpdate.isEnabled = false
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -45,22 +53,33 @@ class CurrencyFragment : InitFragment(){
 
     private fun updateStateCurrency(state: CurrencyState){
         when (state) {
-            is CurrencyState.Empty -> {}
+            is CurrencyState.Empty -> {binding.progressBar.visibility = View.VISIBLE}
             is CurrencyState.Success -> {updateCurrency(state.data)}
             is CurrencyState.Error -> {}
+            is CurrencyState.SumResult -> {
 
+            }
         }
     }
 
     private fun updateCurrency(data : ModelResponseNetwork){
-        binding.inputDate.text = data.timestamp
+        binding.date.text = data.timestamp.convertDateToString()
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         val adapter = AdapterCurrency()
         binding.recyclerView.adapter = adapter
+
         adapter.submitList(data.convertTo())
 
-        binding.btnConvert.setOnClickListener {
-            findNavController().navigate(R.id.converterFragment)
-        }
+//        binding.btnConvert.isEnabled = true
+
+//        binding.btnConvert.setOnClickListener {
+//            findNavController().navigate(R.id.converterFragment)
+//        }
+    }
+
+    companion object {
+        private const val MOTION_DURATION = 200
+        private const val DEFAULT_SENDER_TIMEOUT = 500L
     }
 
 }

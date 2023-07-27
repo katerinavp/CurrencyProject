@@ -4,21 +4,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/nav_currency">
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/nav_currency"
         android:name="com.katerinavp.currency.view.fragments.CurrencyFragment"
         android:label="SheetCurrencyFragment"
         tools:layout="@layout/fragment_currency">
-    <action
-        android:id="@+id/action_navigation_colleagueFragment"
-        app:destination="@id/converterFragment"
-        />
+<!--    <action-->
+<!--        android:id="@+id/action_navigation_colleagueFragment"-->
+<!--        app:destination="@id/converterFragment"-->
+<!--        />-->
     </fragment>
 
 
     <fragment
-        android:id="@+id/converterFragment"
+        android:id="@+id/nav_exchange"
         android:name="com.katerinavp.currency.view.fragments.ConverterFragment"
         android:label="AbsencesColleaguesFragment"
         tools:layout="@layout/fragment_converter"/>

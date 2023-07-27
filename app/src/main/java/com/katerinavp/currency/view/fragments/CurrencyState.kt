@@ -6,6 +6,7 @@ sealed class CurrencyState {
 
     data class Success(val data: ModelResponseNetwork) : CurrencyState()
     data class Error(val error: Throwable) : CurrencyState()
+    data class SumResult(val data: String): CurrencyState()
     object Empty : CurrencyState()
 
 }

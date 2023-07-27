@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_favourites"
+        android:enabled="true"
+        android:icon="@drawable/ic_favourites"
+        android:title="@string/items_favourites"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/nav_currency"
+        android:enabled="true"
+        android:icon="@drawable/ic_currency"
+        android:title="@string/items_currency"
+        android:visible="true"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/nav_exchange"
+        android:icon="@drawable/ic_exchange"
+        android:enabled="true"
+        android:title="@string/items_exchange"
+        android:visible="true"
+        app:showAsAction="ifRoom"/>
+
+
+</menu>
