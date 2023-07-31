@@ -2,6 +2,7 @@ package com.katerinavp.currency.di.components
 
 import android.content.Context
 import com.katerinavp.currency.App
+import com.katerinavp.currency.data.db.model.DbModule
 import com.katerinavp.currency.di.modules.CurrencyModule
 import com.katerinavp.currency.di.modules.NetworkModule
 import com.katerinavp.currency.di.modules.ViewModelModule
@@ -15,7 +16,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = [NetworkModule::class, CurrencyModule::class,  ViewModelModule::class])
+@Component(modules = [NetworkModule::class, CurrencyModule::class,  ViewModelModule::class, DbModule::class])
 interface AppComponent {
 
     @Component.Builder

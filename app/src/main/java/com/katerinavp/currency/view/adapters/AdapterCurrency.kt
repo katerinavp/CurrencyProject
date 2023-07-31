@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.katerinavp.currency.data.db.model.CurrencyDbModel
 import com.katerinavp.currency.databinding.RecyclerviewItemBinding
-import com.katerinavp.currency.model.data.ConvertCurrency
 
 
-class AdapterCurrency : ListAdapter<ConvertCurrency, AdapterCurrency.CurrencyViewHolder>(
+class AdapterCurrency : ListAdapter<CurrencyDbModel, AdapterCurrency.CurrencyViewHolder>(
     ModelCurrencyDiffer
 ) {
 
@@ -38,16 +38,16 @@ class AdapterCurrency : ListAdapter<ConvertCurrency, AdapterCurrency.CurrencyVie
     class CurrencyViewHolder(private val binding: RecyclerviewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(currency: ConvertCurrency) {
+        fun bind(currency: CurrencyDbModel) {
             with(binding) {
-                ticker.text = currency.codeCurrency
-                nameCurrency.text = currency.nameCurrency
-                value.text = currency.valueCurrency.toString()
+                ticker.text = currency.code
+                nameCurrency.text = currency.name
+                value.text = currency.value.toString()
             }
         }
 
-        fun partialBind(currency: ConvertCurrency) {
-            binding.value.text = currency.valueCurrency.toString()
+        fun partialBind(currency: CurrencyDbModel) {
+            binding.value.text = currency.value.toString()
         }
     }
 

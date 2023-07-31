@@ -1,6 +1,6 @@
 package com.katerinavp.currency.di.modules
 
-import com.katerinavp.currency.model.api.CurrencyApi
+import com.katerinavp.currency.data.api.CurrencyApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

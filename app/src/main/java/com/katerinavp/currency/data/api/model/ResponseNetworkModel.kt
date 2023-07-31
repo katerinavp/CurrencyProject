@@ -1,9 +1,9 @@
-package com.katerinavp.currency.model.data
+package com.katerinavp.currency.data.api.model
 
 import com.google.gson.annotations.SerializedName
 import java.util.Date
 
-class ModelResponseNetwork (
+class ResponseNetworkModel (
     @SerializedName("Date")
     val date: String,
     @SerializedName("PreviousDate")
@@ -13,5 +13,5 @@ class ModelResponseNetwork (
     @SerializedName("Timestamp")
     val timestamp: Date,
     @SerializedName("Valute")
-    val valute: Map<String, CurrencyNetwork>
+    val valute: Map<String, CurrencyNetworkModel>
     )

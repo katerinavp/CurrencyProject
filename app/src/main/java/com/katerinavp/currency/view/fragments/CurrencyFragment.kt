@@ -10,15 +10,14 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.katerinavp.currency.R
 import com.katerinavp.currency.common.extension.convertDateToString
-import com.katerinavp.currency.common.extension.convertTo
+import com.katerinavp.currency.data.db.model.CurrencyDbModel
 import com.katerinavp.currency.databinding.FragmentCurrencyBinding
-import com.katerinavp.currency.model.data.ModelResponseNetwork
 import com.katerinavp.currency.view.adapters.AdapterCurrency
 import com.katerinavp.currency.view.fragments.base.InitFragment
 import com.katerinavp.currency.viewmodel.CurrencyViewModel
 import kotlinx.coroutines.launch
 
-class CurrencyFragment : InitFragment(){
+class CurrencyFragment : InitFragment() {
     private val binding by lazy { FragmentCurrencyBinding.inflate(layoutInflater) }
 
     private val viewModel by lazy { getViewModel<CurrencyViewModel>() }
@@ -51,10 +50,16 @@ class CurrencyFragment : InitFragment(){
 
     }
 
-    private fun updateStateCurrency(state: CurrencyState){
+    private fun updateStateCurrency(state: CurrencyState) {
         when (state) {
-            is CurrencyState.Empty -> {binding.progressBar.visibility = View.VISIBLE}
-            is CurrencyState.Success -> {updateCurrency(state.data)}
+            is CurrencyState.Empty -> {
+                binding.progressBar.visibility = View.VISIBLE
+            }
+
+            is CurrencyState.Success -> {
+                updateCurrency(state.data)
+            }
+
             is CurrencyState.Error -> {}
             is CurrencyState.SumResult -> {
 
@@ -62,14 +67,13 @@ class CurrencyFragment : InitFragment(){
         }
     }
 
-    private fun updateCurrency(data : ModelResponseNetwork){
-        binding.date.text = data.timestamp.convertDateToString()
+    private fun updateCurrency(data: List<CurrencyDbModel>) {
+        binding.date.text = data.first().date.convertDateToString()
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         val adapter = AdapterCurrency()
         binding.recyclerView.adapter = adapter
 
-        adapter.submitList(data.convertTo())
-
+        adapter.submitList(data)
 //        binding.btnConvert.isEnabled = true
 
 //        binding.btnConvert.setOnClickListener {

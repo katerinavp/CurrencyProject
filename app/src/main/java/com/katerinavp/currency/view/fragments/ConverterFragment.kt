@@ -12,10 +12,8 @@ import android.widget.ArrayAdapter
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.katerinavp.currency.common.extension.convertTo
-import com.katerinavp.currency.common.extension.returnCharCode
+import com.katerinavp.currency.data.db.model.CurrencyDbModel
 import com.katerinavp.currency.databinding.FragmentConverterBinding
-import com.katerinavp.currency.model.data.ModelResponseNetwork
 import com.katerinavp.currency.view.fragments.base.InitFragment
 import com.katerinavp.currency.viewmodel.ConverterViewModel
 import kotlinx.coroutines.launch
@@ -64,17 +62,15 @@ class ConverterFragment : InitFragment() {
         }
     }
 
-    private fun updateConverter(data: ModelResponseNetwork) {
+    private fun updateConverter(data: List<CurrencyDbModel>) {
 
         // Create an ArrayAdapter using a simple spinner layout and car models array
 
         val arrayAdapter =
-            ArrayAdapter(requireContext(), R.layout.simple_spinner_item, data.returnCharCode())
-
+            ArrayAdapter(requireContext(), R.layout.simple_spinner_item, data.map { it.code })
 
         // Set layout to use when the spinner with the list is displayed
 
-        arrayAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
 
         // Set Adapter to Spinner
         binding.currencyChooseSpinner.adapter = arrayAdapter
@@ -87,7 +83,7 @@ class ConverterFragment : InitFragment() {
                     binding.currencyEditText.text.trim().toString().also {
                         viewModel.convert(
                             it.toInt(),
-                            data.convertTo()[(binding.currencyChooseSpinner.selectedItemPosition)]
+                            data[(binding.currencyChooseSpinner.selectedItemPosition)]
                         )
 
                     }
@@ -95,7 +91,7 @@ class ConverterFragment : InitFragment() {
                 } else {
                     viewModel.convert(
                         0,
-                        data.convertTo()[(binding.currencyChooseSpinner.selectedItemPosition)]
+                        data[(binding.currencyChooseSpinner.selectedItemPosition)]
                     )
                 }
             }
@@ -122,7 +118,7 @@ class ConverterFragment : InitFragment() {
                                 binding.currencyEditText.text.trim().toString().also {
                                     viewModel.convert(
                                         it.toInt(),
-                                        data.convertTo()[position]
+                                        data[position]
                                     )
                                 }
 

@@ -1,4 +1,4 @@
-package com.katerinavp.currency.model.data
+package com.katerinavp.currency.data.api.model
 
 class ConvertCurrency (
     val codeCurrency: String,

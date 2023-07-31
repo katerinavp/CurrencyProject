@@ -1,8 +1,8 @@
-package com.katerinavp.currency.model.data
+package com.katerinavp.currency.data.api.model
 
 import com.google.gson.annotations.SerializedName
 
-class CurrencyNetwork (
+class CurrencyNetworkModel (
     @SerializedName("ID")
     val id: String,
 
