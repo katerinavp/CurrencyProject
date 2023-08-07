@@ -2,8 +2,8 @@ package com.katerinavp.currency.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.katerinavp.currency.repository.CurrencyRepository
 import com.katerinavp.currency.view.fragments.CurrencyState
+import com.katerinavp.currency_api.repository.CurrencyRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

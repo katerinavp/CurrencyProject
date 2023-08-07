@@ -12,10 +12,10 @@ import android.widget.ArrayAdapter
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.katerinavp.currency.data.db.model.CurrencyDbModel
 import com.katerinavp.currency.databinding.FragmentConverterBinding
 import com.katerinavp.currency.view.fragments.base.InitFragment
 import com.katerinavp.currency.viewmodel.ConverterViewModel
+import com.katerinavp.currency_api.model.CurrencyDomainModel
 import kotlinx.coroutines.launch
 
 class ConverterFragment : InitFragment() {
@@ -62,7 +62,7 @@ class ConverterFragment : InitFragment() {
         }
     }
 
-    private fun updateConverter(data: List<CurrencyDbModel>) {
+    private fun updateConverter(data: List<CurrencyDomainModel>) {
 
         // Create an ArrayAdapter using a simple spinner layout and car models array
 

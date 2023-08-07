@@ -1,13 +1,19 @@
 package com.katerinavp.currency.view.adapters
 
 import androidx.recyclerview.widget.DiffUtil
-import com.katerinavp.currency.data.db.model.CurrencyDbModel
+import com.katerinavp.currency_api.model.CurrencyDomainModel
 
-object ModelCurrencyDiffer : DiffUtil.ItemCallback<CurrencyDbModel>() {
+object ModelCurrencyDiffer : DiffUtil.ItemCallback<CurrencyDomainModel>() {
 
-    override fun areItemsTheSame(oldItem: CurrencyDbModel, newItem: CurrencyDbModel): Boolean =
-        oldItem == newItem||   oldItem == newItem
+    override fun areItemsTheSame(
+        oldItem: CurrencyDomainModel,
+        newItem: CurrencyDomainModel
+    ): Boolean =
+        oldItem == newItem || oldItem == newItem
 
-    override fun areContentsTheSame(oldItem: CurrencyDbModel, newItem: CurrencyDbModel): Boolean =
+    override fun areContentsTheSame(
+        oldItem: CurrencyDomainModel,
+        newItem: CurrencyDomainModel
+    ): Boolean =
         oldItem == newItem
 }

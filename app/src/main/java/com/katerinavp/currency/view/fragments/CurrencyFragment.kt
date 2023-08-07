@@ -9,12 +9,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.katerinavp.currency.R
-import com.katerinavp.currency.common.extension.convertDateToString
-import com.katerinavp.currency.data.db.model.CurrencyDbModel
 import com.katerinavp.currency.databinding.FragmentCurrencyBinding
 import com.katerinavp.currency.view.adapters.AdapterCurrency
 import com.katerinavp.currency.view.fragments.base.InitFragment
 import com.katerinavp.currency.viewmodel.CurrencyViewModel
+import com.katerinavp.currency_api.model.CurrencyDomainModel
+import com.katerinavp.currency_impl.repository.extension.convertDateToString
 import kotlinx.coroutines.launch
 
 class CurrencyFragment : InitFragment() {
@@ -67,7 +67,7 @@ class CurrencyFragment : InitFragment() {
         }
     }
 
-    private fun updateCurrency(data: List<CurrencyDbModel>) {
+    private fun updateCurrency(data: List<CurrencyDomainModel>) {
         binding.date.text = data.first().date.convertDateToString()
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         val adapter = AdapterCurrency()

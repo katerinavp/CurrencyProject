@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.katerinavp.currency.data.db.model.CurrencyDbModel
 import com.katerinavp.currency.databinding.RecyclerviewItemBinding
+import com.katerinavp.currency_api.model.CurrencyDomainModel
 
 
-class AdapterCurrency : ListAdapter<CurrencyDbModel, AdapterCurrency.CurrencyViewHolder>(
+class AdapterCurrency : ListAdapter<CurrencyDomainModel, AdapterCurrency.CurrencyViewHolder>(
     ModelCurrencyDiffer
 ) {
 
@@ -30,6 +30,7 @@ class AdapterCurrency : ListAdapter<CurrencyDbModel, AdapterCurrency.CurrencyVie
         super.onBindViewHolder(holder, position, payloads)
         holder.partialBind(getItem(position))
     }
+
     //перерисовать полностью данных
     override fun onBindViewHolder(holder: CurrencyViewHolder, position: Int) {
         holder.bind(getItem(position))
@@ -38,7 +39,7 @@ class AdapterCurrency : ListAdapter<CurrencyDbModel, AdapterCurrency.CurrencyVie
     class CurrencyViewHolder(private val binding: RecyclerviewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(currency: CurrencyDbModel) {
+        fun bind(currency: CurrencyDomainModel) {
             with(binding) {
                 ticker.text = currency.code
                 nameCurrency.text = currency.name
@@ -46,7 +47,7 @@ class AdapterCurrency : ListAdapter<CurrencyDbModel, AdapterCurrency.CurrencyVie
             }
         }
 
-        fun partialBind(currency: CurrencyDbModel) {
+        fun partialBind(currency: CurrencyDomainModel) {
             binding.value.text = currency.value.toString()
         }
     }
