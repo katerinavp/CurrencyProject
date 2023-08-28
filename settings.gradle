@@ -16,3 +16,7 @@ rootProject.name = "Currency"
 include ':app'
 include ':currency_impl'
 include ':currency_api'
+include ':currencies_screen_impl'
+include ':converter_screen_impl'
+include ':core'
+include ':core_ui'

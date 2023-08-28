@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.katerinavp.core_ui.components.ClipAppBar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/appBar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cornets="@dimen/app_bar_cornets"
+    android:background="@android:color/transparent"
+    app:elevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/base_dark"
+        android:paddingTop="@dimen/status_bar">
+
+        <TextView
+            android:id="@+id/toolTitle"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:theme="@style/Text.Large.Toolbar"
+            android:layout_marginHorizontal="@dimen/app_bar_padding"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/toolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Заголовок" />
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/searchLayout"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            app:layoutDescription="@xml/app_bar_search_scene"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <View
+                android:id="@+id/background"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_search_edit_text"/>
+
+            <EditText
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/EditTextSearch"
+                android:hint="@string/search_hint"
+                android:imeOptions="actionSearch"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:paddingStart="@dimen/main_space"
+                android:paddingEnd="@dimen/double_space" />
+
+            <ImageView
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/half_space"
+                android:contentDescription="@string/bullet"
+                app:srcCompat="@drawable/ic_close"
+                />
+
+            <ImageView
+                android:id="@+id/searchIcon"
+                android:layout_width="@dimen/search_icon_size"
+                android:layout_height="@dimen/search_icon_size"
+                android:contentDescription="@string/bullet"
+                app:srcCompat="@drawable/ic_search" />
+
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.katerinavp.core_ui.components.ClipAppBar>

@@ -11,6 +11,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/converter_screen_impl" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core_ui" />
+            <option value="$PROJECT_DIR$/currencies_screen_impl" />
             <option value="$PROJECT_DIR$/currency_api" />
             <option value="$PROJECT_DIR$/currency_impl" />
           </set>

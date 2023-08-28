@@ -5,7 +5,6 @@ import com.katerinavp.currency_api.model.CurrencyDomainModel
 import com.katerinavp.currency_api.repository.CurrencyRepository
 import com.katerinavp.currency_impl.repository.db.dao.CurrencyDao
 import com.katerinavp.currency_impl.repository.db.model.CurrencyDbModel
-import com.katerinavp.currency_impl.repository.extension.convertToCurrencyDbModel
 import javax.inject.Inject
 
 class CurrencyRepositoryImpl @Inject constructor(
@@ -27,6 +26,7 @@ class CurrencyRepositoryImpl @Inject constructor(
         saveCurrencyToDatabase(currencyDbModel)
         return currencyDbModel
     }
+
 
     private suspend fun saveCurrencyToDatabase(currencyDbModel: List<CurrencyDbModel>) {
         dao.updateIfExistsOrInsertCurrency(currencyDbModel)

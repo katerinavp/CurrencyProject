@@ -34,7 +34,7 @@ android {
 dependencies {
 
     implementation(project(":currency_api"))
-
+//    implementation(project(":core_ui"))
 
     //dagger
     implementation "com.google.dagger:dagger:2.43.2"
