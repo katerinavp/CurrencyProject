@@ -9,8 +9,8 @@ import com.katerinavp.currency_impl.repository.db.model.CurrencyDbModel
 
 @Dao
 abstract class CurrencyDao {
-    @Query("SELECT * FROM ${CurrencyDbModel.TABLE_NAME}")
-    abstract suspend fun getCurrency(): List<CurrencyDbModel>?
+    @Query("SELECT * FROM ${CurrencyDbModel.TABLE_NAME} WHERE name LIKE :search OR numCode LIKE :search  ")
+    abstract suspend fun getCurrency(search: String): List<CurrencyDbModel>?
 
     @Query("DELETE FROM ${CurrencyDbModel.TABLE_NAME}")
     abstract fun removeAllCurrency()

@@ -90,7 +90,7 @@ class ConverterFragment : Fragment() {
         val arrayAdapter =
             ArrayAdapter(requireContext(), R.layout.simple_spinner_item,
                 data.currencies.map { it.code })
-binding.currencyChooseSpinner.setSelection(data.selectedCurrency?:0)
+        binding.currencyChooseSpinner.setSelection(data.selectedCurrency?:0)
         // Set layout to use when the spinner with the list is displayed
 
 

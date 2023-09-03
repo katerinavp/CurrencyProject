@@ -12,8 +12,8 @@ class CurrencyRepositoryImpl @Inject constructor(
     private val dao: CurrencyDao,
 ) : CurrencyRepository {
 
-    override suspend fun getCurrency(): List<CurrencyDomainModel> {
-        val currencyModel = dao.getCurrency()
+    override suspend fun getCurrency(search: String): List<CurrencyDomainModel> {
+        val currencyModel = dao.getCurrency("%$search%")
         if (currencyModel?.isNotEmpty() == true) {
             return currencyModel.map(::dbToDomainModel)
         }

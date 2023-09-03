@@ -18,14 +18,14 @@ class CurrencyViewModel @Inject constructor(private val repo: CurrencyRepository
     val currencyState: StateFlow<ResponseState<List<CurrencyDomainModel>>> = _currencyState
 
     init {
-        getCurrency()
+        getCurrency("")
     }
 
-    private fun getCurrency() {
+    fun getCurrency(search: String) {
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val currencyResult = repo.getCurrency()
+                val currencyResult = repo.getCurrency(search)
                 _currencyState.emit(ResponseState.Success(currencyResult))
             } catch (e: Throwable) {
                 _currencyState.emit(ResponseState.Error(e))

@@ -10,7 +10,6 @@ import com.katerinavp.currency_api.repository.CurrencyRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.roundToInt
@@ -22,14 +21,14 @@ class ConverterViewModel @Inject constructor(private val repo: CurrencyRepositor
 
 
     init {
-        getCurrency()
+        getCurrency(search = "")
     }
 
-    private fun getCurrency() {
+    private fun getCurrency(search: String) {
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val currencyResult = repo.getCurrency()
+                val currencyResult = repo.getCurrency(search)
                 _converterState.value = ResponseState.Success(
                     UiState(
                         currencies = currencyResult,
