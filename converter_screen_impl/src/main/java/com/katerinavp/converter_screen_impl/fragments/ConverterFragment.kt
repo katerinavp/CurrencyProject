@@ -2,13 +2,12 @@ package com.katerinavp.converter_screen_impl.fragments
 
 import android.R
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -29,6 +28,14 @@ class ConverterFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ConverterViewModel.Factory
     var converterFragmentComponent: ConverterFragmentComponent? = null
+
+    private val arrayAdapter by lazy {
+        ArrayAdapter(
+            requireContext(),
+            R.layout.simple_spinner_item,
+            mutableListOf<String>()
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +63,25 @@ class ConverterFragment : Fragment() {
             }
         }
 
+        binding.currencyChooseSpinner.adapter = arrayAdapter
+
+        binding.currencyEditText.addTextChangedListener {
+            viewModel.setInput(binding.currencyEditText.text.toString())
+        }
+
+        binding.currencyChooseSpinner.onItemSelectedListener =  object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                viewModel.setSelectedCurrency(position)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {            }
+
+        }
     }
 
 //    private fun updateToolbar(appBar: AppBarLayout?, title: String) {
@@ -87,77 +113,11 @@ class ConverterFragment : Fragment() {
 
         // Create an ArrayAdapter using a simple spinner layout and car models array
 
-        val arrayAdapter =
-            ArrayAdapter(requireContext(), R.layout.simple_spinner_item,
-                data.currencies.map { it.code })
-        binding.currencyChooseSpinner.setSelection(data.selectedCurrency?:0)
-        // Set layout to use when the spinner with the list is displayed
+        arrayAdapter.clear()
+        arrayAdapter.addAll(data.currencies.map { it.code })
 
+        binding.currencyChooseSpinner.setSelection(data.selectedCurrency ?: 0)
 
-        // Set Adapter to Spinner
-        binding.currencyChooseSpinner.adapter = arrayAdapter
-
-        binding.currencyEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                if (s.toString() != "") { // let нет работает
-
-                    binding.currencyEditText.text.trim().toString().also {
-                        viewModel.convert(
-                            it.toInt(),
-                            data.currencies[(binding.currencyChooseSpinner.selectedItemPosition)],
-                                    binding.currencyChooseSpinner.selectedItemPosition
-                        )
-
-                    }
-
-                } else {
-                    viewModel.convert(
-                        0,
-                        data.currencies[(binding.currencyChooseSpinner.selectedItemPosition)],
-                        binding.currencyChooseSpinner.selectedItemPosition
-                    )
-                }
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.currencyChooseSpinner.onItemSelectedListener =
-                    object : AdapterView.OnItemSelectedListener {
-
-                        override fun onItemSelected(
-
-                            parent: AdapterView<*>?,
-
-                            view: View?,
-
-                            position: Int,
-
-                            id: Long
-
-                        ) {
-//                            if (s.toString() != "") {
-//                                binding.currencyEditText.text.trim().toString().also {
-//                                    viewModel.convert(
-//                                        it.toInt(),
-//                                        data.currencies[position],
-//                                        position
-//                                    )
-//                                }
-//
-//                            }
-                        }
-
-                        override fun onNothingSelected(parent: AdapterView<*>?) {
-//
-                            //no activity or action when nothing is selected
-                        }
-                    }
-
-            }
-
-        })
     }
 
     private fun updateConvertResult(data: String) {

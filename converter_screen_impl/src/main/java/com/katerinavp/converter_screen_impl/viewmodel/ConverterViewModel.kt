@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.katerinavp.converter_screen_impl.fragments.UiState
 import com.katerinavp.core.ResponseState
-import com.katerinavp.currency_api.model.CurrencyDomainModel
 import com.katerinavp.currency_api.repository.CurrencyRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,6 +21,12 @@ class ConverterViewModel @Inject constructor(private val repo: CurrencyRepositor
 
     init {
         getCurrency(search = "")
+
+        viewModelScope.launch {
+            converterState.collect {
+                convert()
+            }
+        }
     }
 
     private fun getCurrency(search: String) {
@@ -32,47 +37,50 @@ class ConverterViewModel @Inject constructor(private val repo: CurrencyRepositor
                 _converterState.value = ResponseState.Success(
                     UiState(
                         currencies = currencyResult,
-
                     )
                 )
             } catch (e: Throwable) {
                 _converterState.emit(ResponseState.Error(e))
             }
         }
-
     }
 
-    fun convert(sum: Int, data: CurrencyDomainModel, index: Int) {
+    fun setSelectedCurrency(index: Int) {
+        val currentState = (_converterState.value as? ResponseState.Success<UiState>)
+            ?.data
+            ?: return
+        _converterState.value = ResponseState.Success(
+            data = currentState.copy(selectedCurrency = index)
+        )
+    }
+
+    fun setInput(input: String) {
+        val currentState = (_converterState.value as? ResponseState.Success<UiState>)
+            ?.data
+            ?: return
+        _converterState.value = ResponseState.Success(
+            data = currentState.copy(input = input)
+        )
+    }
+
+    private fun convert() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val currentState = (_converterState.value as? ResponseState.Success<UiState>)
                     ?.data
                     ?: return@launch
+                val currentCurrency =
+                    currentState.selectedCurrency?.let { currentState.currencies.getOrNull(it) }
+                        ?: return@launch
+                val sum = currentState.input.toIntOrNull()
+                    ?: return@launch
+
                 _converterState.value = ResponseState.Success(
                     currentState.copy(
-                        result = (data.value * sum).roundToInt().toString(),
-                        selectedCurrency = index,
+                        result = (currentCurrency.value * sum).roundToInt().toString(),
+                        selectedCurrency = currentState.selectedCurrency,
                     )
                 )
-
-//                _converterState.value = ResponseState.Success(
-//                    UiState(
-//                        result = (data.value * sum).roundToInt().toString(),
-//                        currencies = currentState,
-//                        selectedCurrency = data.code,
-//                    )
-//                )
-
-//                _converterState.update {
-//                    ResponseState.Success(
-//                        UiState(
-//                            currencies = currentState.,
-//                            result = (data.value * sum).roundToInt().toString(),
-//                            selectedCurrency =
-//                        ))
-//                }
-
-
             } catch (e: Throwable) {
                 _converterState.emit(ResponseState.Error(e))
             }

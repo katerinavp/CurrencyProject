@@ -33,7 +33,7 @@ class CurrencyFragment : Fragment() {
     private val viewModel: CurrencyViewModel by viewModels { viewModelFactory }
 
     private var currencyFragmentComponent: CurrencyFragmentComponent? = null
-//private lateinit var adapter: AdapterCurrency
+
     @Inject
     lateinit var viewModelFactory: CurrencyViewModel.Factory
 
