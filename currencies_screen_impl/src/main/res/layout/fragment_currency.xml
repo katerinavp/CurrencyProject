@@ -43,20 +43,19 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/current_date"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@id/date"
             app:layout_constraintStart_toStartOf="@id/start"
-           />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="20.11.2021"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="@dimen/double_space"
             app:layout_constraintEnd_toEndOf="@id/end"
             app:layout_constraintStart_toEndOf="@id/dateTxt"
-            />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="20.11.2021" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/userBarrier"
@@ -65,42 +64,25 @@
             app:barrierDirection="bottom"
             app:constraint_referenced_ids="date,dateTxt" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/double_space"
-            android:layout_marginBottom="8dp"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            app:layout_constraintTop_toBottomOf="@id/userBarrier"
-            tools:listitem="@layout/recyclerview_item" />
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userBarrier">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/double_space"
+                android:layout_marginBottom="8dp"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                app:layout_constraintTop_toBottomOf="@id/userBarrier"
+                tools:listitem="@layout/recyclerview_item" />
 
-        <!--    <androidx.appcompat.widget.AppCompatButton-->
-        <!--        android:id="@+id/btnUpdate"-->
-        <!--        style="@style/Button"-->
-        <!--        android:layout_width="0dp"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_marginTop="@dimen/main_space"-->
-        <!--        android:text="Загрузить"-->
-        <!--        app:layout_constraintEnd_toEndOf="@id/end"-->
-        <!--        app:layout_constraintStart_toStartOf="@id/start"-->
-        <!--        app:layout_constraintTop_toBottomOf="@id/recyclerView"-->
-        <!--        app:layout_constraintBottom_toTopOf="@id/btnConvert"/>-->
-
-        <!--        <androidx.appcompat.widget.AppCompatButton-->
-        <!--        android:id="@+id/btnConvert"-->
-        <!--        style="@style/Button"-->
-        <!--        android:layout_width="0dp"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:text="Конвертировать"-->
-        <!--        android:layout_marginTop="@dimen/half_space"-->
-        <!--        android:layout_marginBottom="@dimen/half_space"-->
-        <!--        app:layout_constraintEnd_toEndOf="@id/end"-->
-        <!--        app:layout_constraintStart_toStartOf="@id/start"-->
-        <!--        app:layout_constraintTop_toBottomOf="@id/btnUpdate"-->
-        <!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

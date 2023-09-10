@@ -110,6 +110,11 @@ class CurrencyFragment : Fragment() {
             binding.appBar.search.clearFocus()
         }
 
+        binding.refresh.setOnRefreshListener {
+            viewModel.getCurrency("", true)
+            binding.refresh.isRefreshing = false
+        }
+
     }
 
     private fun openGraphic(id:Int) {

@@ -21,11 +21,11 @@ class CurrencyViewModel @Inject constructor(private val repo: CurrencyRepository
         getCurrency("")
     }
 
-    fun getCurrency(search: String) {
+    fun getCurrency(search: String, forced: Boolean = false) {
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val currencyResult = repo.getCurrency(search)
+                val currencyResult = repo.getCurrency(search, forced)
                 _currencyState.emit(ResponseState.Success(currencyResult))
             } catch (e: Throwable) {
                 _currencyState.emit(ResponseState.Error(e))

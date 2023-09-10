@@ -20,7 +20,7 @@ class ConverterViewModel @Inject constructor(private val repo: CurrencyRepositor
 
 
     init {
-        getCurrency(search = "")
+        getCurrency(search = "", false)
 
         viewModelScope.launch {
             converterState.collect {
@@ -29,11 +29,11 @@ class ConverterViewModel @Inject constructor(private val repo: CurrencyRepositor
         }
     }
 
-    private fun getCurrency(search: String) {
+    private fun getCurrency(search: String, forced: Boolean) {
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val currencyResult = repo.getCurrency(search)
+                val currencyResult = repo.getCurrency(search, forced)
                 _converterState.value = ResponseState.Success(
                     UiState(
                         currencies = currencyResult,
