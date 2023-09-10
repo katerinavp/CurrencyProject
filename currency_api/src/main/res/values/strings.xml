@@ -11,4 +11,5 @@
     <string name ="items_favourites">Избранное</string>
     <string name ="items_currency">Курс валют</string>
     <string name="items_exchange">Обмен валюты</string>
+    <string name="empty_favorites">Данные отсутствуют</string>
 </resources>

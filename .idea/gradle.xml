@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/currencies_screen_impl" />
             <option value="$PROJECT_DIR$/currency_api" />
             <option value="$PROJECT_DIR$/currency_impl" />
+            <option value="$PROJECT_DIR$/favorites_screen_impl" />
           </set>
         </option>
       </GradleProjectSettings>

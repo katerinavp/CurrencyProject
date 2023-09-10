@@ -9,6 +9,7 @@ import com.katerinavp.currency.db.di.DbModule
 import com.katerinavp.currency.di.modules.SubcomponentModule
 import com.katerinavp.currency.di.modules.CurrencyModule
 import com.katerinavp.currency.di.modules.NetworkModule
+import com.katerinavp.favorites_screen_impl.di.FavoritesFragmentComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -36,5 +37,7 @@ interface AppComponent {
     fun converterFragmentComponent(): ConverterFragmentComponent.Factory
 
     fun graphicFragmentComponent(): GraphicFragmentComponent.Factory
+
+    fun favoritesFragmentComponent(): FavoritesFragmentComponent.Factory
 }
 

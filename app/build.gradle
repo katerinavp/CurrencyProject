@@ -20,6 +20,12 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -57,6 +63,7 @@ dependencies {
     implementation project(path: ':currencies_screen_impl')
     implementation project(path: ':converter_screen_impl')
     implementation project(path: ':core')
+    implementation project(path:':favorites_screen_impl')
 
 
     // Base
