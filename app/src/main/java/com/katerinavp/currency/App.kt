@@ -5,6 +5,7 @@ import com.katerinavp.converter_screen_impl.di.ConverterComponentProvider
 import com.katerinavp.converter_screen_impl.di.ConverterFragmentComponent
 import com.katerinavp.currencies_screen_impl.di.CurrencyComponentProvider
 import com.katerinavp.currencies_screen_impl.di.CurrencyFragmentComponent
+import com.katerinavp.currencies_screen_impl.di.GraphicFragmentComponent
 import com.katerinavp.currency.di.components.AppComponent
 import com.katerinavp.currency.di.components.DaggerAppComponent
 
@@ -27,6 +28,11 @@ class App : Application(), CurrencyComponentProvider, ConverterComponentProvider
 
     override fun provideConverterFragmentComponent(): ConverterFragmentComponent {
         return appComponent.converterFragmentComponent().create()
+
+    }
+
+    override fun provideGraphicFragmentComponent(): GraphicFragmentComponent {
+        return appComponent.graphicFragmentComponent().create()
 
     }
 

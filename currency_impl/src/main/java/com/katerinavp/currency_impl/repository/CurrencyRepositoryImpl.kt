@@ -1,6 +1,6 @@
 package com.katerinavp.currency_impl.repository
 
-import com.katerinavp.currency.data.api.CurrencyApi
+import com.katerinavp.currency_impl.repository.api.CurrencyApi
 import com.katerinavp.currency_api.model.CurrencyDomainModel
 import com.katerinavp.currency_api.repository.CurrencyRepository
 import com.katerinavp.currency_impl.repository.db.dao.CurrencyDao

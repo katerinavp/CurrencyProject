@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
 import com.katerinavp.core.ResponseState
@@ -33,6 +34,8 @@ class CurrencyFragment : Fragment() {
     private val viewModel: CurrencyViewModel by viewModels { viewModelFactory }
 
     private var currencyFragmentComponent: CurrencyFragmentComponent? = null
+
+//    val navigator: Navigator by lazy { (activity as MainActivity).navigator }
 
     @Inject
     lateinit var viewModelFactory: CurrencyViewModel.Factory
@@ -88,11 +91,11 @@ class CurrencyFragment : Fragment() {
 //        binding.btnConvert.isEnabled = false
 //        binding.btnUpdate.isEnabled = false
 
-        with(binding.list) {
-            layoutManager = LinearLayoutManager(requireContext())
-            removeOnItemTouchListener(touchListener)
-            addOnItemTouchListener(touchListener)
-        }
+        binding.list.layoutManager = LinearLayoutManager(requireContext())
+        binding.list.adapter = AdapterCurrency(this::openGraphic)
+
+        binding.list.removeOnItemTouchListener(touchListener)
+        binding.list.addOnItemTouchListener(touchListener)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -107,6 +110,10 @@ class CurrencyFragment : Fragment() {
             binding.appBar.search.clearFocus()
         }
 
+    }
+
+    private fun openGraphic(id:Int) {
+        findNavController().navigate(R.id.graphicFragment)
     }
 
     private fun updateToolbar(appBar: AppBarLayout?, title: String) {
@@ -142,10 +149,8 @@ class CurrencyFragment : Fragment() {
             binding.list.visibility = View.VISIBLE
             binding.progress.visibility = View.GONE
             binding.date.text = data.first().date.convertDateToString()
-            val adapter = AdapterCurrency()
-            binding.list.adapter = adapter
 
-            adapter.submitList(data)
+            (binding.list.adapter as AdapterCurrency).submitList(list)
         }
 
     }

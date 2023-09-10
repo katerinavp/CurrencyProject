@@ -8,7 +8,7 @@ import com.katerinavp.currencies_screen_impl.databinding.RecyclerviewItemBinding
 import com.katerinavp.currency_api.model.CurrencyDomainModel
 
 
-class AdapterCurrency : ListAdapter<CurrencyDomainModel, AdapterCurrency.CurrencyViewHolder>(
+class AdapterCurrency(private val openGraphic: (id: Int) -> Unit) : ListAdapter<CurrencyDomainModel, AdapterCurrency.CurrencyViewHolder>(
     ModelCurrencyDiffer
 ) {
 
@@ -18,7 +18,7 @@ class AdapterCurrency : ListAdapter<CurrencyDomainModel, AdapterCurrency.Currenc
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),openGraphic
         )
 
     //перерисовать часть данных на UI
@@ -36,7 +36,7 @@ class AdapterCurrency : ListAdapter<CurrencyDomainModel, AdapterCurrency.Currenc
         holder.bind(getItem(position))
     }
 
-    class CurrencyViewHolder(private val binding: RecyclerviewItemBinding) :
+    class CurrencyViewHolder(private val binding: RecyclerviewItemBinding, private val openGraphic: (graphic:Int)->Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(currency: CurrencyDomainModel) {
@@ -44,6 +44,10 @@ class AdapterCurrency : ListAdapter<CurrencyDomainModel, AdapterCurrency.Currenc
                 ticker.text = currency.code
                 nameCurrency.text = currency.name
                 value.text = currency.value.toString()
+            }
+
+            itemView.setOnClickListener {
+                openGraphic.invoke(1)
             }
         }
 
