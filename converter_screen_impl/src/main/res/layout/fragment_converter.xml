@@ -4,12 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/base">
+    android:background="@color/base"
+    android:orientation="vertical">
 
-    <include
+    <com.katerinavp.core_ui.components.ClipAppBar
         android:id="@+id/appBar"
-        layout="@layout/layout_app_bar_main" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:cornets="@dimen/app_bar_cornets"
+        app:elevation="2dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/base_dark">
+
+            <TextView
+                android:id="@+id/toolTitle"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_marginHorizontal="@dimen/app_bar_padding"
+                android:gravity="center"
+                android:text="@string/convert"
+                android:theme="@style/Text.Large.Toolbar" />
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                style="@style/AppTheme.Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize" />
+        </FrameLayout>
+    </com.katerinavp.core_ui.components.ClipAppBar>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -34,35 +60,23 @@
 
         <EditText
             android:id="@+id/currencyEditText"
-            android:layout_width="0dp"
             style="@style/EditTextSearch"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:inputType="number"
             android:hint="@string/edit_sum"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="@id/end"
             app:layout_constraintStart_toStartOf="@id/start"
             app:layout_constraintTop_toTopOf="parent" />
 
 
-<!--        <TextView-->
-<!--            android:id="@+id/currencySpinner"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:text="₽"-->
-<!--            android:gravity="center_vertical"-->
-<!--            app:layout_constraintEnd_toEndOf="@id/end"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/currencyEditText"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/currencyEditText" />-->
-
         <TextView
             android:id="@+id/currencyResultTextView"
+            style="@style/EditTextSearch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/EditTextSearch"
             android:layout_marginTop="@dimen/main_space"
             android:layout_marginEnd="@dimen/half_space"
             android:gravity="center"
@@ -76,22 +90,10 @@
             android:layout_width="100dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/main_space"
+            app:layout_constraintBottom_toBottomOf="@+id/currencyResultTextView"
             app:layout_constraintEnd_toEndOf="@id/end"
             app:layout_constraintStart_toEndOf="@+id/currencyResultTextView"
-            app:layout_constraintTop_toBottomOf="@id/currencyEditText"
-            app:layout_constraintBottom_toBottomOf="@+id/currencyResultTextView" />
+            app:layout_constraintTop_toBottomOf="@id/currencyEditText" />
 
-<!--        <androidx.appcompat.widget.AppCompatButton-->
-<!--            android:id="@+id/btnConvert"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="@dimen/main_space"-->
-<!--            style="@style/Button"-->
-<!--            android:text="@string/action_convert"-->
-<!--            app:layout_constraintEnd_toEndOf="@id/end"-->
-<!--            app:layout_constraintStart_toStartOf="@id/start"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/currencyResultEditText"-->
-
-<!--            />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

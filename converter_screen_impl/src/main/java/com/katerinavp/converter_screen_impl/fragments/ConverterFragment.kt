@@ -41,8 +41,6 @@ class ConverterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-//        initFragment()
         return binding.root
     }
 
@@ -69,32 +67,21 @@ class ConverterFragment : Fragment() {
             viewModel.setInput(binding.currencyEditText.text.toString())
         }
 
-        binding.currencyChooseSpinner.onItemSelectedListener =  object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                viewModel.setSelectedCurrency(position)
+        binding.currencyChooseSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    viewModel.setSelectedCurrency(position)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+
             }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {            }
-
-        }
     }
-
-//    private fun updateToolbar(appBar: AppBarLayout?, title: String) {
-//        val toolbar = appBar?.findViewById<Toolbar>(R.id.toolbar)
-//        appBar?.bringToFront()
-////        getMainActivity().updateDrawer(toolbar)
-//        updateTitle(appBar, title)
-//    }
-//
-//    private fun updateTitle(appBar: AppBarLayout?, title: String) {
-//        val textView = appBar?.findViewById<TextView>(R.id.toolTitle)
-//        textView?.text = title
-//    }
 
     private fun updateStateCurrency(state: ResponseState<UiState>) {
         when (state) {
@@ -110,8 +97,6 @@ class ConverterFragment : Fragment() {
     }
 
     private fun updateConverter(data: UiState) {
-
-        // Create an ArrayAdapter using a simple spinner layout and car models array
 
         arrayAdapter.clear()
         arrayAdapter.addAll(data.currencies.map { it.code })
