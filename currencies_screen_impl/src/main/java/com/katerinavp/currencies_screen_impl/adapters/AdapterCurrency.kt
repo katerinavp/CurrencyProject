@@ -8,7 +8,8 @@ import com.katerinavp.currencies_screen_impl.databinding.RecyclerviewItemBinding
 import com.katerinavp.currency_api.model.CurrencyDomainModel
 
 
-class AdapterCurrency(private val openGraphic: (id: Int) -> Unit) : ListAdapter<CurrencyDomainModel, AdapterCurrency.CurrencyViewHolder>(
+class AdapterCurrency(private val openGraphic: (id: Int) -> Unit,
+private val saveFavorites: (currency: CurrencyDomainModel) -> Unit) : ListAdapter<CurrencyDomainModel, AdapterCurrency.CurrencyViewHolder>(
     ModelCurrencyDiffer
 ) {
 
@@ -18,7 +19,7 @@ class AdapterCurrency(private val openGraphic: (id: Int) -> Unit) : ListAdapter<
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            ),openGraphic
+            ),openGraphic, saveFavorites
         )
 
     //перерисовать часть данных на UI
@@ -36,7 +37,8 @@ class AdapterCurrency(private val openGraphic: (id: Int) -> Unit) : ListAdapter<
         holder.bind(getItem(position))
     }
 
-    class CurrencyViewHolder(private val binding: RecyclerviewItemBinding, private val openGraphic: (graphic:Int)->Unit) :
+    class CurrencyViewHolder(private val binding: RecyclerviewItemBinding, private val openGraphic: (graphic:Int)->Unit,
+    private val saveFavorites: (currency: CurrencyDomainModel)->Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(currency: CurrencyDomainModel) {
@@ -49,6 +51,10 @@ class AdapterCurrency(private val openGraphic: (id: Int) -> Unit) : ListAdapter<
             itemView.setOnClickListener {
                 openGraphic.invoke(1)
             }
+
+            itemView.setOnLongClickListener {
+                saveFavorites.invoke(currency)
+                return@setOnLongClickListener true}
         }
 
         fun partialBind(currency: CurrencyDomainModel) {

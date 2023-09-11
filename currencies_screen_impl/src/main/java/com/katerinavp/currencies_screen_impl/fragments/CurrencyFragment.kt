@@ -35,8 +35,6 @@ class CurrencyFragment : Fragment() {
 
     private var currencyFragmentComponent: CurrencyFragmentComponent? = null
 
-//    val navigator: Navigator by lazy { (activity as MainActivity).navigator }
-
     @Inject
     lateinit var viewModelFactory: CurrencyViewModel.Factory
 
@@ -78,12 +76,16 @@ class CurrencyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        currencyFragmentComponent = (requireContext().applicationContext as CurrencyComponentProvider)
-            .provideCurrencyFragmentComponent()
+        currencyFragmentComponent =
+            (requireContext().applicationContext as CurrencyComponentProvider)
+                .provideCurrencyFragmentComponent()
 
         currencyFragmentComponent?.inject(this)
 
-        updateToolbar(binding.appBar.appBar, getString(com.katerinavp.currency_api.R.string.currency))
+        updateToolbar(
+            binding.appBar.appBar,
+            getString(com.katerinavp.currency_api.R.string.currency)
+        )
 
         binding.appBar.searchLayout.setTransition(R.id.start, R.id.end)
         binding.appBar.searchLayout.setTransitionDuration(MOTION_DURATION)
@@ -92,7 +94,7 @@ class CurrencyFragment : Fragment() {
 //        binding.btnUpdate.isEnabled = false
 
         binding.list.layoutManager = LinearLayoutManager(requireContext())
-        binding.list.adapter = AdapterCurrency(this::openGraphic)
+        binding.list.adapter = AdapterCurrency(this::openGraphic, this::saveFavorites)
 
         binding.list.removeOnItemTouchListener(touchListener)
         binding.list.addOnItemTouchListener(touchListener)
@@ -117,7 +119,7 @@ class CurrencyFragment : Fragment() {
 
     }
 
-    private fun openGraphic(id:Int) {
+    private fun openGraphic(id: Int) {
         findNavController().navigate(R.id.graphicFragment)
     }
 
@@ -126,6 +128,10 @@ class CurrencyFragment : Fragment() {
         appBar?.bringToFront()
 //        getMainActivity().updateDrawer(toolbar)
         updateTitle(appBar, title)
+    }
+
+    private fun saveFavorites(currency: CurrencyDomainModel) {
+        viewModel.saveFavorites(currency)
     }
 
     private fun updateTitle(appBar: AppBarLayout?, title: String) {
@@ -150,7 +156,7 @@ class CurrencyFragment : Fragment() {
     }
 
     private fun updateCurrency(data: List<CurrencyDomainModel>?) {
-        data?.let{list ->
+        data?.let { list ->
             binding.list.visibility = View.VISIBLE
             binding.progress.visibility = View.GONE
             binding.date.text = data.first().date.convertDateToString()

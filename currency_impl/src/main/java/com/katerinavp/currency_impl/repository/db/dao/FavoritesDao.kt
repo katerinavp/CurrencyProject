@@ -17,7 +17,7 @@ abstract class FavoritesDao {
 //    abstract fun removeAllFavorites()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertCurrency(currency: List<CurrencyDbModel>)
+    abstract fun insertCurrency(currency: CurrencyDbModel)
 
 //    @Transaction
 //    open suspend fun updateIfExistsOrInsertFavorites(currency: List<CurrencyDbModel>) {

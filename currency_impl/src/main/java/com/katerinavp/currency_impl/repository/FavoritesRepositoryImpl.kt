@@ -18,6 +18,10 @@ class FavoritesRepositoryImpl @Inject constructor(
        return dao.getFavorites().map(::dbToDomainModel)
     }
 
+    override suspend fun insertFavorites(currency: CurrencyDomainModel) {
+        dao.insertCurrency(currency as CurrencyDbModel)
+    }
+
     private fun dbToDomainModel(dbModel: CurrencyDbModel): CurrencyDomainModel {
         return CurrencyDomainModel(
             id = dbModel.id,
