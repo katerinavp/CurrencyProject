@@ -1,4 +1,4 @@
-package com.katerinavp.currency_impl.repository.api.model
+package com.katerinavp.currency_impl.api.model
 
 import com.google.gson.annotations.SerializedName
 

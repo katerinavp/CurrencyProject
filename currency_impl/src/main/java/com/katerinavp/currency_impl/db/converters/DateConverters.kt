@@ -1,4 +1,4 @@
-package com.katerinavp.currency_impl.repository.db.converters
+package com.katerinavp.currency_impl.db.converters
 
 import androidx.room.TypeConverter
 import java.util.*

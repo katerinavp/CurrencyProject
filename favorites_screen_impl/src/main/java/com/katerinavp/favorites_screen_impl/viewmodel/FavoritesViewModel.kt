@@ -14,9 +14,9 @@ import javax.inject.Inject
 
 class FavoritesViewModel@Inject constructor(private val repo: FavoritesRepository) : ViewModel() {
 
-    private val _currencyState = MutableStateFlow<ResponseState<List<CurrencyDomainModel>>>(
+    private val _favoritesState = MutableStateFlow<ResponseState<List<CurrencyDomainModel>>>(
         ResponseState.Empty)
-    val currencyState: StateFlow<ResponseState<List<CurrencyDomainModel>>> = _currencyState
+    val favoritesState: StateFlow<ResponseState<List<CurrencyDomainModel>>> = _favoritesState
 
     init {
         getCurrency()
@@ -27,9 +27,9 @@ class FavoritesViewModel@Inject constructor(private val repo: FavoritesRepositor
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val currencyResult = repo.getFavorites()
-                _currencyState.emit(ResponseState.Success(currencyResult))
+                _favoritesState.emit(ResponseState.Success(currencyResult))
             } catch (e: Throwable) {
-                _currencyState.emit(ResponseState.Error(e))
+                _favoritesState.emit(ResponseState.Error(e))
             }
         }
     }

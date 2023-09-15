@@ -1,6 +1,6 @@
-package com.katerinavp.currency_impl.repository.api
+package com.katerinavp.currency_impl.api
 
-import com.katerinavp.currency_impl.repository.api.model.ResponseNetworkModel
+import com.katerinavp.currency_impl.api.model.ResponseNetworkModel
 import retrofit2.http.GET
 
 /**

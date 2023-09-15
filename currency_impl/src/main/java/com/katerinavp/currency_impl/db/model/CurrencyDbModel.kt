@@ -1,36 +1,31 @@
-package com.katerinavp.currency_impl.repository.db.model
+package com.katerinavp.currency_impl.db.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.katerinavp.currency_impl.repository.db.model.CurrencyDbModel.Companion.TABLE_NAME
+import com.katerinavp.currency_impl.db.model.CurrencyDbModel.Companion.TABLE_NAME
 import java.util.Date
 
-@Entity(tableName = TABLE_NAME)
+@Entity(tableName = TABLE_NAME,)
 data class CurrencyDbModel(
-
+    @PrimaryKey()
     @ColumnInfo(name = COLUMN_NUM_CODE)
-    var code: String,
+    val code: String,
 
     @ColumnInfo(name = COLUMN_NAME)
-    var name: String,
+    val name: String,
 
     @ColumnInfo(name = COLUMN_VALUE)
-    var value: Double,
+    val value: Double,
 
     @ColumnInfo(name = COLUMN_TIME_STAMP)
-    var date: Date,
-
+    val date: Date,
 
     ) {
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = COLUMN_ID)
-    var id: Long = 0
 
     companion object {
         const val TABLE_NAME = "currency"
-        const val COLUMN_ID = "id"
-        const val COLUMN_NUM_CODE = "numCode"
+        const val COLUMN_NUM_CODE = "charCode"
         const val COLUMN_NAME = "name"
         const val COLUMN_VALUE = "value"
         private const val COLUMN_TIME_STAMP = "timestamp"

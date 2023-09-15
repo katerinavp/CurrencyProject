@@ -3,11 +3,11 @@ package com.katerinavp.currency.db
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.katerinavp.currency_impl.repository.db.converters.DateConverters
-import com.katerinavp.currency_impl.repository.db.dao.CurrencyDao
-import com.katerinavp.currency_impl.repository.db.dao.FavoritesDao
-import com.katerinavp.currency_impl.repository.db.model.CurrencyDbModel
-import com.katerinavp.currency_impl.repository.db.model.FavoritesDbModel
+import com.katerinavp.currency_impl.db.converters.DateConverters
+import com.katerinavp.currency_impl.db.dao.CurrencyDao
+import com.katerinavp.currency_impl.db.dao.FavoritesDao
+import com.katerinavp.currency_impl.db.model.CurrencyDbModel
+import com.katerinavp.currency_impl.db.model.FavoritesDbModel
 
 /**
  * База данных

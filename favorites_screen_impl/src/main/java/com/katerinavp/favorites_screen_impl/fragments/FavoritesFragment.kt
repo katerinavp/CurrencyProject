@@ -52,7 +52,7 @@ class FavoritesFragment  : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    viewModel.currencyState.collect(::updateStateCurrency)
+                    viewModel.favoritesState.collect(::updateStateCurrency)
                 }
             }
         }

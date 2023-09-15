@@ -1,22 +1,26 @@
-package com.katerinavp.currency_impl.repository.db.dao
+package com.katerinavp.currency_impl.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
-import com.katerinavp.currency_impl.repository.db.model.CurrencyDbModel
+import androidx.room.Update
+import com.katerinavp.currency_impl.db.model.CurrencyDbModel
 
 @Dao
 abstract class CurrencyDao {
-    @Query("SELECT * FROM ${CurrencyDbModel.TABLE_NAME} WHERE name LIKE :search OR numCode LIKE :search  ")
+    @Query("SELECT * FROM ${CurrencyDbModel.TABLE_NAME} WHERE name LIKE :search OR charCode LIKE :search  ")
     abstract suspend fun getCurrency(search: String): List<CurrencyDbModel>?
 
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    abstract suspend fun updateCurrency(currency: List<CurrencyDbModel>)
+
     @Query("DELETE FROM ${CurrencyDbModel.TABLE_NAME}")
-    abstract fun removeAllCurrency()
+    abstract suspend fun removeAllCurrency()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertCurrency(currency: List<CurrencyDbModel>)
+    abstract suspend fun insertCurrency(currency: List<CurrencyDbModel>)
 
     @Transaction
     open suspend fun updateIfExistsOrInsertCurrency(currency: List<CurrencyDbModel>) {

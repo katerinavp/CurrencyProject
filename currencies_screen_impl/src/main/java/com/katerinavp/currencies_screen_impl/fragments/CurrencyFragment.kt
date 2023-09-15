@@ -90,9 +90,6 @@ class CurrencyFragment : Fragment() {
         binding.appBar.searchLayout.setTransition(R.id.start, R.id.end)
         binding.appBar.searchLayout.setTransitionDuration(MOTION_DURATION)
 
-//        binding.btnConvert.isEnabled = false
-//        binding.btnUpdate.isEnabled = false
-
         binding.list.layoutManager = LinearLayoutManager(requireContext())
         binding.list.adapter = AdapterCurrency(this::openGraphic, this::saveFavorites)
 
@@ -102,7 +99,10 @@ class CurrencyFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    viewModel.currencyState.collect(::updateStateCurrency)
+                    viewModel.currencyState.collect(::currencyState)
+                }
+                launch {
+                    viewModel.updateCurrencyState.collect(::updateState)
                 }
             }
         }
@@ -113,7 +113,7 @@ class CurrencyFragment : Fragment() {
         }
 
         binding.refresh.setOnRefreshListener {
-            viewModel.getCurrency("", true)
+            viewModel.updateCurrency(true)
             binding.refresh.isRefreshing = false
         }
 
@@ -139,7 +139,7 @@ class CurrencyFragment : Fragment() {
         textView?.text = title
     }
 
-    private fun updateStateCurrency(state: ResponseState<List<CurrencyDomainModel>>) {
+    private fun currencyState(state: ResponseState<List<CurrencyDomainModel>>) {
         when (state) {
             is ResponseState.Empty -> {
                 binding.progress.visibility = View.VISIBLE
@@ -152,6 +152,18 @@ class CurrencyFragment : Fragment() {
             is ResponseState.Error -> {
                 binding.progress.visibility = View.GONE
             }
+        }
+    }
+
+    private fun updateState(state: ResponseState<Boolean>){
+        when (state) {
+            is ResponseState.Empty -> {}
+
+            is ResponseState.Success -> {
+                viewModel.getCurrency("", false)
+            }
+
+            is ResponseState.Error -> {}
         }
     }
 

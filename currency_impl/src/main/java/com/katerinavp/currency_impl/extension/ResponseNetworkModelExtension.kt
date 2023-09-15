@@ -1,8 +1,8 @@
-package com.katerinavp.currency_impl.repository
+package com.katerinavp.currency_impl.extension
 
-import com.katerinavp.currency_impl.repository.api.model.CurrencyNetworkModel
-import com.katerinavp.currency_impl.repository.api.model.ResponseNetworkModel
-import com.katerinavp.currency_impl.repository.db.model.CurrencyDbModel
+import com.katerinavp.currency_impl.api.model.CurrencyNetworkModel
+import com.katerinavp.currency_impl.api.model.ResponseNetworkModel
+import com.katerinavp.currency_impl.db.model.CurrencyDbModel
 import java.util.Date
 
 fun from(currencyNetworkModel: CurrencyNetworkModel, date: Date): CurrencyDbModel {

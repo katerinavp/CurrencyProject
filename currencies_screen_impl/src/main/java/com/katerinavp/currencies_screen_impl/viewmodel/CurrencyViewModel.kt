@@ -18,11 +18,25 @@ class CurrencyViewModel @Inject constructor(private val repo: CurrencyRepository
     private val _currencyState = MutableStateFlow<ResponseState<List<CurrencyDomainModel>>>(ResponseState.Empty)
     val currencyState: StateFlow<ResponseState<List<CurrencyDomainModel>>> = _currencyState
 
+    private val _updateCurrencyState = MutableStateFlow<ResponseState<Boolean>>(ResponseState.Empty)
+    val updateCurrencyState: StateFlow<ResponseState<Boolean>> = _updateCurrencyState
+
     private val _saveFavoritesState = MutableStateFlow<ResponseState<Boolean>>(ResponseState.Empty)
     val saveFavoritesState: StateFlow<ResponseState<Boolean>> = _saveFavoritesState
 
     init {
         getCurrency("")
+    }
+
+    fun updateCurrency(forced: Boolean){
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repo.updateCurrency(forced)
+                _updateCurrencyState.emit(ResponseState.Success(true))
+            } catch (e: Throwable) {
+                _updateCurrencyState.emit(ResponseState.Error(e))
+            }
+        }
     }
 
     fun getCurrency(search: String, forced: Boolean = false) {
