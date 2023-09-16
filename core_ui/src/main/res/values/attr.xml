@@ -6,4 +6,16 @@
     <declare-styleable name="ClipAppBar">
         <attr name="cornets"/>
     </declare-styleable>
+
+    <declare-styleable name="CurrencyView">
+        <attr name="favorites" format="reference" />
+        <attr name="favoritesSize" format="dimension"/>
+        <attr name="name" format="string"/>
+        <attr name="ticker" format="string" />
+        <attr name="value" format="string"/>
+        <attr name="tickerStyle" format="reference"/>
+        <attr name="textMargin" format="dimension"/>
+    </declare-styleable>
+
+
 </resources>

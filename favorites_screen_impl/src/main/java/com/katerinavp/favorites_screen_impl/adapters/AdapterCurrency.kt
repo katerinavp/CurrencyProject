@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.katerinavp.currency_api.model.CurrencyDomainModel
-import com.katerinavp.favorites_screen.databinding.RecyclerviewItemBinding
+import com.katerinavp.favorites_screen.databinding.RecyclerviewFavoritesItemBinding
 
 
 class AdapterFavorites() : ListAdapter<CurrencyDomainModel, AdapterFavorites.FavoritesViewHolder>(
@@ -14,7 +14,7 @@ class AdapterFavorites() : ListAdapter<CurrencyDomainModel, AdapterFavorites.Fav
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesViewHolder =
         FavoritesViewHolder(
-            RecyclerviewItemBinding.inflate(
+            RecyclerviewFavoritesItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -36,20 +36,20 @@ class AdapterFavorites() : ListAdapter<CurrencyDomainModel, AdapterFavorites.Fav
         holder.bind(getItem(position))
     }
 
-    class FavoritesViewHolder(private val binding: RecyclerviewItemBinding) :
+    class FavoritesViewHolder(private val binding: RecyclerviewFavoritesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(currency: CurrencyDomainModel) {
             with(binding) {
-                ticker.text = currency.code
-                nameCurrency.text = currency.name
-                value.text = currency.value.toString()
+                favoritesInfo.ticker = currency.code
+                favoritesInfo.name= currency.name
+                favoritesInfo.value = currency.value.toString()
             }
 
         }
 
         fun partialBind(currency: CurrencyDomainModel) {
-            binding.value.text = currency.value.toString()
+            binding.favoritesInfo.value = currency.value.toString()
         }
     }
 

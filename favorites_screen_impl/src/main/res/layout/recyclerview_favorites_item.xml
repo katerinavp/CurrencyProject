@@ -12,14 +12,15 @@
     app:cardCornerRadius="8dp"
     app:cardElevation="2dp">
 
+
     <com.katerinavp.core_ui.components.CurrencyView
-        android:id="@+id/currency_info"
+        android:id="@+id/favorites_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/half_space"
-        app:favorites="@drawable/baseline_favorite_border_24"
         app:textMargin="@dimen/main_space"
         tools:ticker="EUR"
         tools:name="Евро"
         tools:value="105.60" />
+
 </androidx.cardview.widget.CardView>

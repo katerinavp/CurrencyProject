@@ -43,9 +43,9 @@ private val saveFavorites: (currency: CurrencyDomainModel) -> Unit) : ListAdapte
 
         fun bind(currency: CurrencyDomainModel) {
             with(binding) {
-                ticker.text = currency.code
-                nameCurrency.text = currency.name
-                value.text = currency.value.toString()
+                currencyInfo.ticker = currency.code
+                currencyInfo.name = currency.name
+                currencyInfo.value = currency.value.toString()
             }
 
             itemView.setOnClickListener {
@@ -58,7 +58,7 @@ private val saveFavorites: (currency: CurrencyDomainModel) -> Unit) : ListAdapte
         }
 
         fun partialBind(currency: CurrencyDomainModel) {
-            binding.value.text = currency.value.toString()
+            binding.currencyInfo.value = currency.value.toString()
         }
     }
 

@@ -1,0 +1,6 @@
+<resources>
+    <item name="ticker" type="id" />
+    <item name="name" type="id" />
+    <item name="value" type="id" />
+    <item name="favorites" type="id" />
+</resources>

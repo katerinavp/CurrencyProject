@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="half_space">8dp</dimen>
     <dimen name="main_space">16dp</dimen>
     <dimen name="status_bar">24dp</dimen>
     <dimen name="double_space">28dp</dimen>
@@ -7,7 +8,6 @@
     <dimen name="app_bar_padding">50dp</dimen>
     <dimen name="app_bar_search">138dp</dimen>
     <dimen name="search_icon_size">24dp</dimen>
-    <dimen name="half_space">8dp</dimen>
     <dimen name="text_normal">14sp</dimen>
     <dimen name="edit_text_padding">10dp</dimen>
     <dimen name="bottom_menu">56dp</dimen>
@@ -23,4 +23,6 @@
     <dimen name="yAxisTextHeight">16dp</dimen>
 
     <dimen name="button_cornets">25dp</dimen>
+
+    <dimen name="favorites_size">24dp</dimen>
 </resources>
