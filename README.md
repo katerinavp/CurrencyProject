@@ -10,7 +10,7 @@
 • Dagger2 <br />
 • Kotlin Coroutines <br />
 • Retrofit <br />
-• Room
+• Room <br />
 • CustomView
  
 ### Возможности приложения:
