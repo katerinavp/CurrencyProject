@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -124,9 +123,6 @@ class CurrencyFragment : Fragment() {
     }
 
     private fun updateToolbar(appBar: AppBarLayout?, title: String) {
-        val toolbar = appBar?.findViewById<Toolbar>(R.id.toolbar)
-        appBar?.bringToFront()
-//        getMainActivity().updateDrawer(toolbar)
         updateTitle(appBar, title)
     }
 

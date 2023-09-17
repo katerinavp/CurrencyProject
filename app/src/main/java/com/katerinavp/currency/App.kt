@@ -20,8 +20,6 @@ class App : Application(), CurrencyComponentProvider, FavoritesComponentProvider
         DaggerAppComponent.builder().context(this).build()
     }
 
-//    val appComponent = DaggerAppComponent.builder().context(this).build()
-
 
     override fun provideCurrencyFragmentComponent(): CurrencyFragmentComponent {
         return appComponent.currencyFragmentComponent().create()

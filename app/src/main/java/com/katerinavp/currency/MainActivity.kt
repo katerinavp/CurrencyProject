@@ -25,29 +25,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-//        val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
-//        binding.bottomNavigation.setOnNavigationItemSelectedListener {
-//            when (it.itemId) {
-//                R.id.nav_favourites -> navGraph.startDestination = R.id.nav_favourites
-//                R.id.nav_currency -> navGraph.startDestination = R.id.nav_currency
-//                R.id.nav_exchange -> navGraph.startDestination = R.id.nav_exchange
-//                else -> navGraph.startDestination = R.id.nav_currency
-//
-//            }
-//        }
-
         if (savedInstanceState == null) {
             setStartDestination()
         }
 
         binding.bottomNavigation.setupWithNavController(navController)
-//        navController.addOnDestinationChangedListener { _, destination, _ ->
-//            when (destination.id) {
-//
-//                else -> binding.bottomNavigation.visibility = View.VISIBLE
-//            }
-//
-//        }
+
     }
 
     private fun setStartDestination() {

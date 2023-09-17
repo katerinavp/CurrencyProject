@@ -13,6 +13,7 @@
     <dimen name="bottom_menu">56dp</dimen>
     <dimen name="app_bar">96dp</dimen>
     <dimen name="text_large">16sp</dimen>
+    <dimen name="selector_cornets">10dp</dimen>
 
     <dimen name="minLinearChartHeight">400dp</dimen>
     <dimen name="minLinearChartWidth">400dp</dimen>

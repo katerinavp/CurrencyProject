@@ -46,7 +46,7 @@ class ConverterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        updateToolbar(binding.appBar.appBar, getString(R.string.convert))
+
         converterFragmentComponent =
             (requireContext().applicationContext as ConverterComponentProvider)
                 .provideConverterFragmentComponent()
