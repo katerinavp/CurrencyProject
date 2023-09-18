@@ -19,3 +19,6 @@
 • Сохранение в избранное <br />
 • Конвертация валюты <br />
 • График по каждой валюте
+
+### Дизайн
+<img src="https://github.com/katerinavp/CurrencyProject/blob/master_multimodul_2/images/currency.jpg" width="200" height="400"> <img src="https://github.com/katerinavp/CurrencyProject/blob/master_multimodul_2/images/currency_search.jpg" width="200" height="400"> <img src="https://github.com/katerinavp/CurrencyProject/blob/master_multimodul_2/images/favorites.jpg" width="200" height="400"> <img src="https://github.com/katerinavp/CurrencyProject/blob/master_multimodul_2/images/convert.jpg" width="200" height="400"> 
