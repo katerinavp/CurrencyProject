@@ -16,7 +16,6 @@ import javax.inject.Inject
 
 class GraphicFragment : Fragment() {
     private val binding by lazy { FragmentGraphicBinding.inflate(layoutInflater) }
-//    private val viewModel: CurrencyViewModel by viewModels { viewModelFactory }
 
     private var currencyFragmentComponent: GraphicFragmentComponent? = null
 

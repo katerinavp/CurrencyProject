@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Currency</string>
     <string name="action_convert">Конвертировать</string>
+    <string name="graph">График</string>
     <string name="edit_sum">Введите сумму ₽</string>
     <string name="result_sum">Результат</string>
     <string name="current_date">Текущая дата</string>
