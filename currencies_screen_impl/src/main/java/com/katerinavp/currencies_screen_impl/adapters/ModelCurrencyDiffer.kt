@@ -8,12 +8,14 @@ object ModelCurrencyDiffer : DiffUtil.ItemCallback<CurrencyDomainModel>() {
     override fun areItemsTheSame(
         oldItem: CurrencyDomainModel,
         newItem: CurrencyDomainModel
-    ): Boolean =
-        oldItem == newItem || oldItem == newItem
+    ): Boolean {
+        return oldItem.code == newItem.code
+    }
+
 
     override fun areContentsTheSame(
         oldItem: CurrencyDomainModel,
         newItem: CurrencyDomainModel
     ): Boolean =
-        oldItem == newItem
+        oldItem.code == newItem.code
 }

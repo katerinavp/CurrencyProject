@@ -1,6 +1,7 @@
 package com.katerinavp.core_ui.components
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.ContextThemeWrapper
@@ -41,6 +42,13 @@ class CurrencyView(context: Context, attrs: AttributeSet) : ConstraintLayout(con
         }
         set(value) {
             valueTextView.text = value
+        }
+
+    var isFavorites: Int? = 0
+        set(value) {
+            field = value
+            updateFavorites()
+
         }
 
 
@@ -132,6 +140,15 @@ class CurrencyView(context: Context, attrs: AttributeSet) : ConstraintLayout(con
         } else {
             favoritesView.setImageDrawable(icon)
             favoritesView.setBackgroundResource(R.drawable.baseline_favorite_border_24)
+            updateFavorites()
+        }
+    }
+
+    private fun updateFavorites(){
+        if(isFavorites == 1){
+            favoritesView.setColorFilter(Color.RED)
+        }else{
+            favoritesView.setColorFilter(Color.BLACK)
         }
     }
 

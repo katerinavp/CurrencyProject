@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -19,6 +20,7 @@ import com.katerinavp.core.ResponseState
 import com.katerinavp.core.extension.convertDateToString
 import com.katerinavp.currencies_screen_impl.HideKeyboardTouchListener
 import com.katerinavp.currencies_screen_impl.R
+import com.katerinavp.currencies_screen_impl.ViewState
 import com.katerinavp.currencies_screen_impl.adapters.AdapterCurrency
 import com.katerinavp.currencies_screen_impl.databinding.FragmentCurrencyBinding
 import com.katerinavp.currencies_screen_impl.di.CurrencyComponentProvider
@@ -103,6 +105,9 @@ class CurrencyFragment : Fragment() {
                 launch {
                     viewModel.updateCurrencyState.collect(::updateState)
                 }
+//                launch {
+//                    viewModel.saveFavoritesState.collect(::updateState)
+//                }
             }
         }
 
@@ -126,8 +131,17 @@ class CurrencyFragment : Fragment() {
         updateTitle(appBar, title)
     }
 
-    private fun saveFavorites(currency: CurrencyDomainModel) {
-        viewModel.saveFavorites(currency)
+    private fun saveFavorites(currency: CurrencyDomainModel, position: Int) {
+        val holder =
+            binding.list.findViewHolderForAdapterPosition(position) as AdapterCurrency.CurrencyViewHolder
+        if (currency.isFavorites == ViewState.NOT_FAVORITES.value) {
+            currency.isFavorites = ViewState.FAVORITES.value
+            viewModel.saveFavorites(currency)
+        } else {
+            currency.isFavorites = ViewState.NOT_FAVORITES.value
+            viewModel.deleteFavorites(currency)
+        }
+        holder.updateFavorites(currency)
     }
 
     private fun updateTitle(appBar: AppBarLayout?, title: String) {
@@ -151,7 +165,7 @@ class CurrencyFragment : Fragment() {
         }
     }
 
-    private fun updateState(state: ResponseState<Boolean>){
+    private fun updateState(state: ResponseState<Boolean>) {
         when (state) {
             is ResponseState.Empty -> {}
 

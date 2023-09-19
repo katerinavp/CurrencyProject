@@ -9,4 +9,5 @@ data class CurrencyDomainModel(
     val name: String,
     val value: Double,
     val date: Date,
+    var isFavorites: Int? = 0,
 )

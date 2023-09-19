@@ -1,5 +1,6 @@
-package com.katerinavp.currency.db
+package com.katerinavp.currency_impl.db
 
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
@@ -16,7 +17,7 @@ import com.katerinavp.currency_impl.db.model.FavoritesDbModel
 @Database(
     version = 1, exportSchema = true, entities = [CurrencyDbModel::class, FavoritesDbModel::class],
     autoMigrations = [
-
+//        AutoMigration(from = 1, to = 2)
     ]
 )
 

@@ -10,7 +10,8 @@ fun from(currencyNetworkModel: CurrencyNetworkModel, date: Date): CurrencyDbMode
         code = currencyNetworkModel.charCode,
         name = currencyNetworkModel.name,
         value = currencyNetworkModel.value,
-        date = date
+        date = date,
+        isFavorites = 0
 
     )
 }

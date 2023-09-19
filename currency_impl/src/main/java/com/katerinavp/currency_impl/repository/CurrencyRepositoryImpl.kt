@@ -3,6 +3,7 @@ package com.katerinavp.currency_impl.repository
 import com.katerinavp.currency_api.model.CurrencyDomainModel
 import com.katerinavp.currency_api.repository.CurrencyRepository
 import com.katerinavp.currency_impl.api.CurrencyApi
+import com.katerinavp.currency_impl.db.AppDatabase
 import com.katerinavp.currency_impl.db.dao.CurrencyDao
 import com.katerinavp.currency_impl.db.model.CurrencyDbModel
 import com.katerinavp.currency_impl.extension.convertToCurrencyDbModel
@@ -11,20 +12,21 @@ import javax.inject.Inject
 
 class CurrencyRepositoryImpl @Inject constructor(
     private val api: CurrencyApi,
-    private val dao: CurrencyDao,
+    private val appDatabase: AppDatabase,
+//    : CurrencyDao,
 ) : CurrencyRepository {
 
     override suspend fun getCurrency(search: String, forced: Boolean): List<CurrencyDomainModel> {
-        val currencyModel = dao.getCurrency("%$search%")
+        val currencyModel = appDatabase.currencyDao.getCurrency("%$search%")
         if (currencyModel?.isNotEmpty() == true && !forced) {
-            return currencyModel.map{it.currencyDbToDomain()}
+            return setFavoritesFlag(currencyModel).map{it.currencyDbToDomain()}
         }
         return getCurrencyServer().map{it.currencyDbToDomain()}
     }
 
     override suspend fun updateCurrency(forced: Boolean) {
         val currencyNetwork = api.getCurrency()
-        dao.updateCurrency(currencyNetwork.convertToCurrencyDbModel())
+        appDatabase.currencyDao.updateCurrency(setFavoritesFlag(currencyNetwork.convertToCurrencyDbModel()))
     }
 
     private suspend fun getCurrencyServer(): List<CurrencyDbModel> {
@@ -34,7 +36,25 @@ class CurrencyRepositoryImpl @Inject constructor(
         return currencyDbModel
     }
 
+    private suspend fun setFavoritesFlag(currencyDbModel: List<CurrencyDbModel>): List<CurrencyDbModel>{
+        val favoritesDbModel = appDatabase.favoritesDao.getFavoritesWithId()
+        if(favoritesDbModel.isNotEmpty()){
+           for(i in currencyDbModel.indices){
+               for(favorite in favoritesDbModel ){
+                   if(currencyDbModel[i].code == favorite.favorites.code){
+                       currencyDbModel[i].isFavorites = 1
+                   }else{
+                       currencyDbModel[i].isFavorites = 0
+                   }
+               }
+           }
+
+        }
+        return currencyDbModel
+    }
+
+
     private suspend fun saveCurrencyToDatabase(currencyDbModel: List<CurrencyDbModel>) {
-        dao.updateIfExistsOrInsertCurrency(currencyDbModel)
+        appDatabase.currencyDao.updateIfExistsOrInsertCurrency(currencyDbModel)
     }
 }

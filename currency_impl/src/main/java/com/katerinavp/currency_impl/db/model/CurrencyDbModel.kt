@@ -21,6 +21,9 @@ data class CurrencyDbModel(
     @ColumnInfo(name = COLUMN_TIME_STAMP)
     val date: Date,
 
+    @ColumnInfo(name = COLUMN_IS_FAVORITES, defaultValue = "0")
+    var isFavorites: Int? = 0,
+
     ) {
 
     companion object {
@@ -29,5 +32,6 @@ data class CurrencyDbModel(
         const val COLUMN_NAME = "name"
         const val COLUMN_VALUE = "value"
         private const val COLUMN_TIME_STAMP = "timestamp"
+        const val COLUMN_IS_FAVORITES = "isFavorites"
     }
 }

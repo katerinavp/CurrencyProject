@@ -9,5 +9,6 @@ fun FavoritesWithCurrency.fromFavToDomainModel(): CurrencyDomainModel {
         name = this.currency.name,
         value = this.currency.value,
         date = this.currency.date,
+        isFavorites = this.currency.isFavorites,
     )
 }

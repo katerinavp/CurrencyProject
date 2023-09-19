@@ -22,6 +22,9 @@ abstract class CurrencyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insertCurrency(currency: List<CurrencyDbModel>)
 
+    @Query("UPDATE ${CurrencyDbModel.TABLE_NAME} SET isFavorites=:isFavorites WHERE charCode = :code")
+    abstract suspend fun updateFavoritesStatus(isFavorites: Int?, code: String)
+
     @Transaction
     open suspend fun updateIfExistsOrInsertCurrency(currency: List<CurrencyDbModel>) {
         removeAllCurrency()

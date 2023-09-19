@@ -9,7 +9,7 @@ import com.katerinavp.currency_api.model.CurrencyDomainModel
 
 
 class AdapterCurrency(private val openGraphic: (id: Int) -> Unit,
-private val saveFavorites: (currency: CurrencyDomainModel) -> Unit) : ListAdapter<CurrencyDomainModel, AdapterCurrency.CurrencyViewHolder>(
+private val saveFavorites: (currency: CurrencyDomainModel, position: Int) -> Unit) : ListAdapter<CurrencyDomainModel, AdapterCurrency.CurrencyViewHolder>(
     ModelCurrencyDiffer
 ) {
 
@@ -38,7 +38,7 @@ private val saveFavorites: (currency: CurrencyDomainModel) -> Unit) : ListAdapte
     }
 
     class CurrencyViewHolder(private val binding: RecyclerviewItemBinding, private val openGraphic: (graphic:Int)->Unit,
-    private val saveFavorites: (currency: CurrencyDomainModel)->Unit) :
+    private val saveFavorites: (currency: CurrencyDomainModel,position: Int)->Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(currency: CurrencyDomainModel) {
@@ -46,20 +46,26 @@ private val saveFavorites: (currency: CurrencyDomainModel) -> Unit) : ListAdapte
                 currencyInfo.ticker = currency.code
                 currencyInfo.name = currency.name
                 currencyInfo.value = currency.value.toString()
+                currencyInfo.isFavorites = currency.isFavorites
             }
 
             itemView.setOnClickListener {
-                openGraphic.invoke(1)
+                openGraphic.invoke(adapterPosition)
             }
 
             itemView.setOnLongClickListener {
-                saveFavorites.invoke(currency)
-                return@setOnLongClickListener true}
+                saveFavorites.invoke(currency, adapterPosition)
+                return@setOnLongClickListener true
+                }
         }
 
         fun partialBind(currency: CurrencyDomainModel) {
             binding.currencyInfo.value = currency.value.toString()
         }
+
+       fun updateFavorites(item: CurrencyDomainModel) = with(binding) {
+           currencyInfo.isFavorites = (item.isFavorites)
+           }
     }
 
 

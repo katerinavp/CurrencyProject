@@ -5,7 +5,7 @@ import com.katerinavp.converter_screen_impl.di.ConverterFragmentComponent
 import com.katerinavp.currencies_screen_impl.di.CurrencyFragmentComponent
 import com.katerinavp.currencies_screen_impl.di.GraphicFragmentComponent
 import com.katerinavp.currency.App
-import com.katerinavp.currency.db.di.DbModule
+import com.katerinavp.currency.di.modules.DbModule
 import com.katerinavp.currency.di.modules.SubcomponentModule
 import com.katerinavp.currency.di.modules.CurrencyModule
 import com.katerinavp.currency.di.modules.NetworkModule

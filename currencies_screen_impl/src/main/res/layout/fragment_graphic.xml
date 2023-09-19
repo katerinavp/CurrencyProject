@@ -26,6 +26,7 @@
                 android:layout_height="?android:attr/actionBarSize"
                 android:layout_marginHorizontal="@dimen/app_bar_padding"
                 android:gravity="center"
+                android:text="@string/graph"
                 android:theme="@style/Text.Large.Toolbar"
                 tools:text="Заголовок" />
 

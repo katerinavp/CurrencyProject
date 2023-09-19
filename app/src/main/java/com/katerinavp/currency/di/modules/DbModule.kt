@@ -1,8 +1,8 @@
-package com.katerinavp.currency.db.di
+package com.katerinavp.currency.di.modules
 
 import android.content.Context
 import androidx.room.Room
-import com.katerinavp.currency.db.AppDatabase
+import com.katerinavp.currency_impl.db.AppDatabase
 import com.katerinavp.currency_impl.db.dao.CurrencyDao
 import com.katerinavp.currency_impl.db.dao.FavoritesDao
 import dagger.Module

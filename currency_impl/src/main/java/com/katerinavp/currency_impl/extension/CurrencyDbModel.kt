@@ -9,5 +9,6 @@ fun CurrencyDbModel.currencyDbToDomain(): CurrencyDomainModel {
         name = this.name,
         value = this.value,
         date = this.date,
+        isFavorites = this.isFavorites,
     )
 }

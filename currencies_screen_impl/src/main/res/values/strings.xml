@@ -2,4 +2,6 @@
     <string name="convert">Конвертация</string>
 
     <string name="emptyChartText">Данные отсутствуют</string>
+
+    <string name="graph">График</string>
 </resources>
