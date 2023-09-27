@@ -55,8 +55,8 @@ class CurrencyView(context: Context, attrs: AttributeSet) : ConstraintLayout(con
     init {
         val a = context.theme.obtainStyledAttributes(attrs, R.styleable.CurrencyView, 0, 0)
 
-        val tickerStyle = a.getResourceId(R.styleable.CurrencyView_tickerStyle, com.katerinavp.currency_api.R.style.Text_Large_Bold)
-        val nameStyle = a.getResourceId(R.styleable.CurrencyView_tickerStyle, com.katerinavp.currency_api.R.style.Text)
+        val tickerStyle = a.getResourceId(R.styleable.CurrencyView_tickerStyle, R.style.Text_Large_Bold)
+        val nameStyle = a.getResourceId(R.styleable.CurrencyView_tickerStyle, R.style.Text)
         val drawableId =
             a.getResourceId(R.styleable.CurrencyView_favorites, -1)
         val favorites =  if (drawableId != -1) AppCompatResources.getDrawable(context, drawableId) else null
@@ -139,7 +139,6 @@ class CurrencyView(context: Context, attrs: AttributeSet) : ConstraintLayout(con
             favoritesView.visibility = View.GONE
         } else {
             favoritesView.setImageDrawable(icon)
-            favoritesView.setBackgroundResource(R.drawable.baseline_favorite_border_24)
             updateFavorites()
         }
     }

@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -85,7 +84,7 @@ class CurrencyFragment : Fragment() {
 
         updateToolbar(
             binding.appBar.appBar,
-            getString(com.katerinavp.currency_api.R.string.currency)
+            getString(com.katerinavp.core_ui.R.string.currency)
         )
 
         binding.appBar.searchLayout.setTransition(R.id.start, R.id.end)

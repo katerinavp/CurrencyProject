@@ -4,7 +4,6 @@ import com.katerinavp.currency_api.model.CurrencyDomainModel
 import com.katerinavp.currency_api.repository.CurrencyRepository
 import com.katerinavp.currency_impl.api.CurrencyApi
 import com.katerinavp.currency_impl.db.AppDatabase
-import com.katerinavp.currency_impl.db.dao.CurrencyDao
 import com.katerinavp.currency_impl.db.model.CurrencyDbModel
 import com.katerinavp.currency_impl.extension.convertToCurrencyDbModel
 import com.katerinavp.currency_impl.extension.currencyDbToDomain
@@ -13,13 +12,12 @@ import javax.inject.Inject
 class CurrencyRepositoryImpl @Inject constructor(
     private val api: CurrencyApi,
     private val appDatabase: AppDatabase,
-//    : CurrencyDao,
 ) : CurrencyRepository {
 
     override suspend fun getCurrency(search: String, forced: Boolean): List<CurrencyDomainModel> {
         val currencyModel = appDatabase.currencyDao.getCurrency("%$search%")
         if (currencyModel?.isNotEmpty() == true && !forced) {
-            return setFavoritesFlag(currencyModel).map{it.currencyDbToDomain()}
+            return (currencyModel).map{it.currencyDbToDomain()}
         }
         return getCurrencyServer().map{it.currencyDbToDomain()}
     }
@@ -43,12 +41,9 @@ class CurrencyRepositoryImpl @Inject constructor(
                for(favorite in favoritesDbModel ){
                    if(currencyDbModel[i].code == favorite.favorites.code){
                        currencyDbModel[i].isFavorites = 1
-                   }else{
-                       currencyDbModel[i].isFavorites = 0
                    }
                }
            }
-
         }
         return currencyDbModel
     }

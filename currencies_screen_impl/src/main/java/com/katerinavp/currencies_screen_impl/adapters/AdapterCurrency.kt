@@ -60,7 +60,10 @@ private val saveFavorites: (currency: CurrencyDomainModel, position: Int) -> Uni
         }
 
         fun partialBind(currency: CurrencyDomainModel) {
-            binding.currencyInfo.value = currency.value.toString()
+            with(binding) {
+                currencyInfo.value = currency.value.toString()
+                currencyInfo.isFavorites = currency.isFavorites
+            }
         }
 
        fun updateFavorites(item: CurrencyDomainModel) = with(binding) {

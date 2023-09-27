@@ -22,14 +22,14 @@ class AdapterFavorites() : ListAdapter<CurrencyDomainModel, AdapterFavorites.Fav
         )
 
     //перерисовать часть данных на UI
-    override fun onBindViewHolder(
-        holder: FavoritesViewHolder,
-        position: Int,
-        payloads: MutableList<Any>
-    ) {
-        super.onBindViewHolder(holder, position, payloads)
-        holder.partialBind(getItem(position))
-    }
+//    override fun onBindViewHolder(
+//        holder: FavoritesViewHolder,
+//        position: Int,
+//        payloads: MutableList<Any>
+//    ) {
+//        super.onBindViewHolder(holder, position, payloads)
+//        holder.partialBind(getItem(position))
+//    }
 
     //перерисовать полностью данных
     override fun onBindViewHolder(holder: FavoritesViewHolder, position: Int) {
@@ -42,15 +42,15 @@ class AdapterFavorites() : ListAdapter<CurrencyDomainModel, AdapterFavorites.Fav
         fun bind(currency: CurrencyDomainModel) {
             with(binding) {
                 favoritesInfo.ticker = currency.code
-                favoritesInfo.name= currency.name
+                favoritesInfo.name = currency.name
                 favoritesInfo.value = currency.value.toString()
             }
-
         }
 
-        fun partialBind(currency: CurrencyDomainModel) {
-            binding.favoritesInfo.value = currency.value.toString()
-        }
+
+//        fun partialBind(currency: CurrencyDomainModel) {
+//            binding.favoritesInfo.value = currency.value.toString()
+//        }
     }
 
 

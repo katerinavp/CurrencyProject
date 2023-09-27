@@ -25,24 +25,24 @@ class LinearChart @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
 
     private val minLinearChartWidth =
-        context.resources.getDimension(com.katerinavp.currency_api.R.dimen.minLinearChartWidth)
+        context.resources.getDimension(com.katerinavp.core_ui.R.dimen.minLinearChartWidth)
             .toInt()
 
     private val minLinearChartHeight =
-        context.resources.getDimension(com.katerinavp.currency_api.R.dimen.minLinearChartHeight)
+        context.resources.getDimension(com.katerinavp.core_ui.R.dimen.minLinearChartHeight)
             .toInt()
 
     private val yAxisTextHeight =
-        context.resources.getDimension(com.katerinavp.currency_api.R.dimen.yAxisTextHeight).toInt()
+        context.resources.getDimension(com.katerinavp.core_ui.R.dimen.yAxisTextHeight).toInt()
 
     private val colorBlack =
-        ContextCompat.getColor(context, com.katerinavp.currency_api.R.color.black)
+        ContextCompat.getColor(context, com.katerinavp.core_ui.R.color.black)
     private val colorBackground =
-        ContextCompat.getColor(context, com.katerinavp.currency_api.R.color.gray)
+        ContextCompat.getColor(context, com.katerinavp.core_ui.R.color.gray)
     private val colorRed = ContextCompat.getColor(context, android.R.color.holo_red_dark)
 
     private val rowSize =
-        context.resources.getDimension(com.katerinavp.currency_api.R.dimen.rowSize).toInt()
+        context.resources.getDimension(com.katerinavp.core_ui.R.dimen.rowSize).toInt()
 
     private var rowCount: Int = 0
     private var columnCount: Int = 0

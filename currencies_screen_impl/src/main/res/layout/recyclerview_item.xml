@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_currency_item"
         android:padding="@dimen/half_space"
-        app:favorites="@drawable/baseline_favorite_border_24"
+        app:favorites="@drawable/ic_favorite"
         app:textMargin="@dimen/main_space"
         tools:name="Евро"
         tools:ticker="EUR"

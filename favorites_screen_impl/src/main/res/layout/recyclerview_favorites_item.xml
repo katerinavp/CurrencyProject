@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/half_space"
         app:textMargin="@dimen/main_space"
+        app:favorites="@drawable/ic_delete"
         tools:ticker="EUR"
         tools:name="Евро"
         tools:value="105.60" />
