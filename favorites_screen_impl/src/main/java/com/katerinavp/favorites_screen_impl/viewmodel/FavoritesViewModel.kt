@@ -18,6 +18,9 @@ class FavoritesViewModel@Inject constructor(private val repo: FavoritesRepositor
         ResponseState.Empty)
     val favoritesState: StateFlow<ResponseState<List<CurrencyDomainModel>>> = _favoritesState
 
+    private val _saveFavoritesState = MutableStateFlow<ResponseState<Boolean>>(ResponseState.Empty)
+    val saveFavoritesState: StateFlow<ResponseState<Boolean>> = _saveFavoritesState
+
     init {
         getCurrency()
     }
@@ -28,6 +31,18 @@ class FavoritesViewModel@Inject constructor(private val repo: FavoritesRepositor
             try {
                 val currencyResult = repo.getFavorites()
                 _favoritesState.emit(ResponseState.Success(currencyResult))
+            } catch (e: Throwable) {
+                _favoritesState.emit(ResponseState.Error(e))
+            }
+        }
+    }
+
+    fun deleteFavorite(currency: CurrencyDomainModel) {
+
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repo.deleteFavorite(currency)
+                _saveFavoritesState.emit(ResponseState.Success(true))
             } catch (e: Throwable) {
                 _favoritesState.emit(ResponseState.Error(e))
             }

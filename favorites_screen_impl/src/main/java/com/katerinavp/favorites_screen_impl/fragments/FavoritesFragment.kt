@@ -21,7 +21,7 @@ import com.katerinavp.favorites_screen_impl.viewmodel.FavoritesViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class FavoritesFragment  : Fragment() {
+class FavoritesFragment: Fragment() {
     private val binding by lazy { FragmentFavoritesBinding.inflate(layoutInflater) }
     private val viewModel: FavoritesViewModel by viewModels { viewModelFactory }
 
@@ -47,7 +47,8 @@ class FavoritesFragment  : Fragment() {
         favoritesFragmentComponent?.inject(this)
 
         binding.list.layoutManager = LinearLayoutManager(requireContext())
-        binding.list.adapter = AdapterFavorites()
+        binding.list.adapter = AdapterFavorites(this::deleteFavorite)
+
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -76,14 +77,18 @@ class FavoritesFragment  : Fragment() {
         }
     }
 
+    private fun deleteFavorite(currency: CurrencyDomainModel, position:Int ){
+        (binding.list.adapter as AdapterFavorites).removeAt(position)
+        viewModel.deleteFavorite(currency)
+    }
+
     private fun updateCurrency(data: List<CurrencyDomainModel>) {
         if(data.isNotEmpty()) {
             binding.list.visibility = View.VISIBLE
             binding.progress.visibility = View.GONE
             binding.date.text = data.first().date.convertDateToString()
             binding.emptyFavorites.visibility = View.GONE
-            (binding.list.adapter as AdapterFavorites).submitList(data)
-
+            (binding.list.adapter as AdapterFavorites).addAll(data)
         }else{
             binding.dateTxt.visibility = View.GONE
             binding.list.visibility = View.GONE
