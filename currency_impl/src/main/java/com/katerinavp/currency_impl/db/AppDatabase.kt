@@ -15,9 +15,9 @@ import com.katerinavp.currency_impl.db.model.FavoritesDbModel
  *
  */
 @Database(
-    version = 1, exportSchema = true, entities = [CurrencyDbModel::class, FavoritesDbModel::class],
+    version = 2, exportSchema = true, entities = [CurrencyDbModel::class, FavoritesDbModel::class],
     autoMigrations = [
-//        AutoMigration(from = 1, to = 2)
+        AutoMigration(from = 1, to = 2)
     ]
 )
 
