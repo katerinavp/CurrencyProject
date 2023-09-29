@@ -21,16 +21,15 @@ private val saveFavorites: (currency: CurrencyDomainModel, position: Int) -> Uni
                 false
             ),openGraphic, saveFavorites
         )
-
-    //перерисовать часть данных на UI
-    override fun onBindViewHolder(
-        holder: CurrencyViewHolder,
-        position: Int,
-        payloads: MutableList<Any>
-    ) {
-        super.onBindViewHolder(holder, position, payloads)
-        holder.partialBind(getItem(position))
-    }
+//
+//    //перерисовать часть данных на UI
+//    override fun onBindViewHolder(
+//        holder: CurrencyViewHolder,
+//        position: Int,
+//        payloads: MutableList<Any>
+//    ) {
+//        holder.partialBind(getItem(position))
+//    }
 
     //перерисовать полностью данных
     override fun onBindViewHolder(holder: CurrencyViewHolder, position: Int) {
@@ -59,12 +58,12 @@ private val saveFavorites: (currency: CurrencyDomainModel, position: Int) -> Uni
                 }
         }
 
-        fun partialBind(currency: CurrencyDomainModel) {
-            with(binding) {
-                currencyInfo.value = currency.value.toString()
-                currencyInfo.isFavorites = currency.isFavorites
-            }
-        }
+//        fun partialBind(currency: CurrencyDomainModel) {
+//            with(binding) {
+//                currencyInfo.value = currency.value.toString()
+//                currencyInfo.isFavorites = currency.isFavorites
+//            }
+//        }
 
        fun updateFavorites(item: CurrencyDomainModel) = with(binding) {
            currencyInfo.isFavorites = (item.isFavorites)

@@ -18,5 +18,6 @@ object ModelCurrencyDiffer : DiffUtil.ItemCallback<CurrencyDomainModel>() {
         newItem: CurrencyDomainModel
     ): Boolean =
         oldItem.code == newItem.code &&
-                oldItem.isFavorites == newItem.isFavorites
+                oldItem.isFavorites == newItem.isFavorites &&
+                oldItem.value == newItem.value
 }
