@@ -1,0 +1,91 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "25c4364eaee4b6f1a04fd3527077b0ab",
+    "entities": [
+      {
+        "tableName": "currency",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`charCode` TEXT NOT NULL, `name` TEXT NOT NULL, `value` REAL NOT NULL, `timestamp` INTEGER NOT NULL, `isFavorites` INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(`charCode`))",
+        "fields": [
+          {
+            "fieldPath": "code",
+            "columnName": "charCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "value",
+            "columnName": "value",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "timestamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFavorites",
+            "columnName": "isFavorites",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "charCode"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "favorites",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`charCodeFavorites` TEXT NOT NULL, PRIMARY KEY(`charCodeFavorites`), FOREIGN KEY(`charCodeFavorites`) REFERENCES `currency`(`charCode`) ON UPDATE CASCADE ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "code",
+            "columnName": "charCodeFavorites",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "charCodeFavorites"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "currency",
+            "onDelete": "NO ACTION",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "charCodeFavorites"
+            ],
+            "referencedColumns": [
+              "charCode"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '25c4364eaee4b6f1a04fd3527077b0ab')"
+    ]
+  }
+}
