@@ -14,7 +14,7 @@ import com.katerinavp.favorites_screen_impl.di.FavoritesFragmentComponent
 /**
  * Основной класс приложения
  */
-class App : Application(), CurrencyComponentProvider, FavoritesComponentProvider, ConverterComponentProvider {
+open class App : Application(), CurrencyComponentProvider, FavoritesComponentProvider, ConverterComponentProvider {
 
     private val appComponent: AppComponent by lazy {
         DaggerAppComponent.builder().context(this).build()
@@ -23,7 +23,6 @@ class App : Application(), CurrencyComponentProvider, FavoritesComponentProvider
 
     override fun provideCurrencyFragmentComponent(): CurrencyFragmentComponent {
         return appComponent.currencyFragmentComponent().create()
-
     }
 
     override fun provideConverterFragmentComponent(): ConverterFragmentComponent {
@@ -33,7 +32,6 @@ class App : Application(), CurrencyComponentProvider, FavoritesComponentProvider
 
     override fun provideGraphicFragmentComponent(): GraphicFragmentComponent {
         return appComponent.graphicFragmentComponent().create()
-
     }
 
     override fun provideFavoritesFragmentComponent(): FavoritesFragmentComponent {
