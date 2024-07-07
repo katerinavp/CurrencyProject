@@ -123,7 +123,7 @@ class CurrencyFragment : Fragment() {
     }
 
     private fun openGraphic(id: Int) {
-        findNavController().navigate(R.id.graphicFragment)
+//        findNavController().navigate(R.id.graphicFragment)
     }
 
     private fun updateToolbar(appBar: AppBarLayout?, title: String) {
