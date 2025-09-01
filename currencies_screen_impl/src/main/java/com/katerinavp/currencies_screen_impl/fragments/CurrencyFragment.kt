@@ -12,7 +12,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
 import com.katerinavp.core.ResponseState
@@ -91,7 +90,7 @@ class CurrencyFragment : Fragment() {
         binding.appBar.searchLayout.setTransitionDuration(MOTION_DURATION)
 
         binding.list.layoutManager = LinearLayoutManager(requireContext())
-        binding.list.adapter = AdapterCurrency(this::openGraphic, this::saveFavorites)
+        binding.list.adapter = AdapterCurrency(this::saveFavorites)
 
         binding.list.removeOnItemTouchListener(touchListener)
         binding.list.addOnItemTouchListener(touchListener)
@@ -104,9 +103,6 @@ class CurrencyFragment : Fragment() {
                 launch {
                     viewModel.updateCurrencyState.collect(::updateState)
                 }
-//                launch {
-//                    viewModel.saveFavoritesState.collect(::updateState)
-//                }
             }
         }
 
@@ -122,9 +118,6 @@ class CurrencyFragment : Fragment() {
 
     }
 
-    private fun openGraphic(id: Int) {
-//        findNavController().navigate(R.id.graphicFragment)
-    }
 
     private fun updateToolbar(appBar: AppBarLayout?, title: String) {
         updateTitle(appBar, title)

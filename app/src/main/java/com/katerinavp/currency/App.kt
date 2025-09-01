@@ -6,7 +6,6 @@ import com.katerinavp.converter_screen_impl.di.ConverterFragmentComponent
 import com.katerinavp.currencies_screen_impl.di.CurrencyComponentProvider
 import com.katerinavp.favorites_screen_impl.di.FavoritesComponentProvider
 import com.katerinavp.currencies_screen_impl.di.CurrencyFragmentComponent
-import com.katerinavp.currencies_screen_impl.di.GraphicFragmentComponent
 import com.katerinavp.currency.di.components.AppComponent
 import com.katerinavp.currency.di.components.DaggerAppComponent
 import com.katerinavp.favorites_screen_impl.di.FavoritesFragmentComponent
@@ -28,10 +27,6 @@ open class App : Application(), CurrencyComponentProvider, FavoritesComponentPro
     override fun provideConverterFragmentComponent(): ConverterFragmentComponent {
         return appComponent.converterFragmentComponent().create()
 
-    }
-
-    override fun provideGraphicFragmentComponent(): GraphicFragmentComponent {
-        return appComponent.graphicFragmentComponent().create()
     }
 
     override fun provideFavoritesFragmentComponent(): FavoritesFragmentComponent {

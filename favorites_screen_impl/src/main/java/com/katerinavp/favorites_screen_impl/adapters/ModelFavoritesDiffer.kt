@@ -8,18 +8,6 @@ class ModelFavoritesDiffer(
     private val newItem: List<CurrencyDomainModel>
 ) : DiffUtil.Callback() {
 
-//    override fun areItemsTheSame(
-//        oldItem: CurrencyDomainModel,
-//        newItem: CurrencyDomainModel
-//    ): Boolean =
-//        oldItem.id == newItem.id
-//
-//    override fun areContentsTheSame(
-//        oldItem: CurrencyDomainModel,
-//        newItem: CurrencyDomainModel
-//    ): Boolean =
-//        oldItem.value == newItem.value
-
     override fun getOldListSize() = oldItem.size
 
     override fun getNewListSize() = newItem.size

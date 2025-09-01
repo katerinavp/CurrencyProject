@@ -26,16 +26,6 @@ class AdapterFavorites(private val deleteFavorite: (currency: CurrencyDomainMode
         return items.size
     }
 
-    //перерисовать часть данных на UI
-//    override fun onBindViewHolder(
-//        holder: FavoritesViewHolder,
-//        position: Int,
-//        payloads: MutableList<Any>
-//    ) {
-//        super.onBindViewHolder(holder, position, payloads)
-//        holder.partialBind(getItem(position))
-//    }
-
     //перерисовать полностью данных
     override fun onBindViewHolder(holder: FavoritesViewHolder, position: Int) {
 //        holder.bind(getItem(position))
@@ -67,12 +57,6 @@ class AdapterFavorites(private val deleteFavorite: (currency: CurrencyDomainMode
                 return@setOnLongClickListener true
             }
         }
-
-
-
-//        fun partialBind(currency: CurrencyDomainModel) {
-//            binding.favoritesInfo.value = currency.value.toString()
-//        }
     }
 
 

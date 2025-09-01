@@ -8,11 +8,9 @@ import com.katerinavp.currency_api.model.CurrencyDomainModel
 import com.katerinavp.currency_api.repository.CurrencyRepository
 import com.katerinavp.currency_api.repository.FavoritesRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.supervisorScope
 import javax.inject.Inject
 
 class CurrencyViewModel @Inject constructor(

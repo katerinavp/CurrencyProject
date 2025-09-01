@@ -13,8 +13,8 @@ android {
         applicationId "com.katerinavp.currency"
         minSdk 24
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
 
         testInstrumentationRunner "com.katerinavp.currency.TestRunner"
 //        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
