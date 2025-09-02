@@ -7,14 +7,14 @@ plugins {
 
 android {
     namespace 'com.katerinavp.currency'
-    compileSdk 33
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.katerinavp.currency"
-        minSdk 24
-        targetSdk 33
-        versionCode 3
-        versionName "1.2"
+        minSdk 26
+        targetSdk 35
+        versionCode 4
+        versionName "1.3"
 
         testInstrumentationRunner "com.katerinavp.currency.TestRunner"
 //        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
