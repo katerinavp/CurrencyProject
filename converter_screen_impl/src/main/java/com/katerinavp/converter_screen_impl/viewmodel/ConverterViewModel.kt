@@ -77,7 +77,7 @@ class ConverterViewModel @Inject constructor(private val repo: CurrencyRepositor
 
                 _converterState.value = ResponseState.Success(
                     currentState.copy(
-                        result = (currentCurrency.value * sum).roundToInt().toString(),
+                        result = (sum / currentCurrency.value).roundToInt().toString(),
                         selectedCurrency = currentState.selectedCurrency,
                     )
                 )
